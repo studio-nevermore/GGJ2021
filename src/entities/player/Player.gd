@@ -22,3 +22,6 @@ func _can_drop_through_platform() -> bool:
 
 func move_with_camera_snap(new_pos):
 	global_position = new_pos
+
+func _on_Movement_movement_state_changed(old_state, new_state):
+	pass
