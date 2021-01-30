@@ -165,7 +165,7 @@ func set_visuals(reload_nodes = false):
 			l.rect_position = Global.VIEW_SIZE / 2
 			var center_index = float(options.size()) / 2 - 0.5
 			var sep = 40
-			sep += 10 * min(4 - options.size(), 0)
+			sep += 20 * min(4 - options.size(), 0)
 			l.rect_position.y -= sep * (center_index - i)
 			l.rect_size = Vector2(300, 50)
 			l.rect_position -= l.rect_size / 2
@@ -206,7 +206,7 @@ func set_cursor():
 		if c is Label:
 			if i == cursor:
 				$Cursor0.position = c.rect_position + c.rect_size / 2
-				$Cursor0.position.y -= 2
+				$Cursor0.position.y += 3
 				$Cursor1.position = $Cursor0.position
 				
 				#var halfsize = (c.text.length() / 2) * 11
