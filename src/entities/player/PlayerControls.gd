@@ -10,6 +10,11 @@ var controls_disabled := false
 var slash_scene = preload("res://src/entities/player/slash.tscn")
 var projectile_scene = preload("res://src/entities/player/projectile.tscn")
 var last_slash_up := false
+var magnetized := false
+var magnetized_to
+var magnetized_dir := Vector2.ZERO
+
+var space_state
 
 func _ready():
 	for c in get_parent().get_children():
@@ -19,6 +24,8 @@ func _ready():
 	push_error("No movement controller found for PlayerControls")
 	
 func _physics_process(_delta):
+	space_state = get_world_2d().direct_space_state
+	
 	var moveRight := 0.0
 	var moveLeft := 0.0
 	var pressRight := 0
@@ -80,6 +87,46 @@ func _physics_process(_delta):
 				
 				$ProjectileCooldown.start()
 				$ProjectileRecoil.start()
+				
+			var magcoll = space_state.intersect_ray(get_parent().global_position, get_parent().global_position + magnetized_dir * 200, [get_parent().get_node("MagnetTracker")], get_parent().get_node("MagnetTracker").collision_mask)
+			if magnetized and (!Input.is_action_pressed("game_magnet") or !magcoll or magcoll["collider"] != magnetized_to):
+				magnetized = false
+				MovementController.freeze_gravity = false
+				MovementController.freeze_decel = false
+				MovementController.bypass_max_speed = false
+				MovementController.bypass_jump = false
+				
+			if Stats.game_data[Stats.Data.upgrade_magnet] and Input.is_action_just_pressed("game_magnet"):
+				var dir = Vector2(-1 if MovementController.facing == Global.HDirs.LEFT else 1, 0)
+				var mag = 0
+				if min(Input.get_action_strength("game_left") / max_sens, 1.0) > mag:
+					dir = Vector2(-1, 0)
+					mag = min(Input.get_action_strength("game_left") / max_sens, 1.0)
+				if min(Input.get_action_strength("game_right") / max_sens, 1.0) > mag:
+					dir = Vector2(1, 0)
+					mag = min(Input.get_action_strength("game_right") / max_sens, 1.0)
+				if min(Input.get_action_strength("game_up") / max_sens, 1.0) > mag:
+					dir = Vector2(0, -1)
+					mag = min(Input.get_action_strength("game_up") / max_sens, 1.0)
+				if min(Input.get_action_strength("game_down") / max_sens, 1.0) > mag:
+					dir = Vector2(0, 1)
+					mag = min(Input.get_action_strength("game_down") / max_sens, 1.0)
+				
+				var coll = space_state.intersect_ray(get_parent().global_position, get_parent().global_position + dir * 200, [get_parent().get_node("MagnetTracker")], get_parent().get_node("MagnetTracker").collision_mask)
+				if coll:
+					var solidcoll = space_state.intersect_ray(get_parent().global_position, coll["collider"].global_position, [get_parent(), coll["collider"]])
+					if !solidcoll:
+						magnetized = true
+						magnetized_to = coll["collider"]
+						magnetized_dir = dir
+						MovementController.freeze_gravity = true
+						MovementController.bypass_max_speed = true
+						MovementController._jumping = true
+						MovementController._velocity = dir * 200
+						if dir.y == -1:
+							MovementController.bypass_jump = true
+						if dir.x != 0:
+							MovementController.freeze_decel = true
 				
 		if !MovementController.is_input_locked():
 			MovementController.move_sign = moveRight - moveLeft

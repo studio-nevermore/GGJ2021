@@ -14,7 +14,7 @@
 [ext_resource path="res://src/rooms/Menu.gd" type="Script" id=13]
 [ext_resource path="res://assets/gui/menu/shop_cursor.png" type="Texture" id=14]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "appear"
 length = 0.6
 tracks/0/type = "value"
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 130 ), Vector2( 0, -10 ), Vector2( 0, 10 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "disappear"
 length = 0.6
 tracks/0/type = "value"
@@ -46,13 +46,12 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -20 ), Vector2( 0, 135 ) ]
 }
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 8 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/intensity = 0.0
 
-[sub_resource type="Animation" id=1]
-resource_name = "unfade"
+[sub_resource type="Animation" id=4]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -112,13 +111,13 @@ centered = false
 script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameContainer/GameView/GUI/Map"]
-anims/appear = SubResource( 2 )
-anims/disappear = SubResource( 3 )
+anims/appear = SubResource( 1 )
+anims/disappear = SubResource( 2 )
 
 [node name="Cells" type="Node2D" parent="GameContainer/GameView/GUI/Map"]
 
 [node name="MapCell" type="Sprite" parent="GameContainer/GameView/GUI/Map/Cells"]
-material = SubResource( 4 )
+material = SubResource( 3 )
 position = Vector2( 31, 28 )
 texture = ExtResource( 6 )
 centered = false
@@ -148,7 +147,7 @@ margin_bottom = 2000.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameContainer/GameView/GUI/ScreenFade"]
-anims/unfade = SubResource( 1 )
+anims/unfade = SubResource( 4 )
 
 [node name="FPSBack" type="Label" parent="GameContainer/GameView/GUI"]
 modulate = Color( 0, 0, 0, 1 )

@@ -39,9 +39,11 @@ var disable_sign_change := false
 
 var freeze_gravity := false setget set_freeze_gravity
 var freeze_facing := false
+var freeze_decel := false
 var knocked_back := false
 var bypass_max_speed := false
 var bypass_physics := false
+var bypass_jump := false
 
 var max_run_mod := 1.0
 
@@ -91,6 +93,9 @@ func _x_velocity(velocity: Vector2, delta: float) -> Vector2:
 	if knocked_back:
 		move_sign = 0
 		decel_x = Physics.decel_knockback * delta
+	if freeze_decel:
+		accel_x = 0
+		decel_x = 0
 	
 	var max_speed = Physics.max_run_speed #(Physics.max_run_speed if grounded else Physics.jump_vel.x)
 	max_speed *= move_sign * max_run_mod # analog strength of movement, if applicable
@@ -114,7 +119,7 @@ func _y_velocity(velocity: Vector2, delta: float) -> Vector2:
 	var is_on_floor = Parent.is_on_floor()
 	#is_on_floor = space_state.intersect_ray(Vector2(Parent.global_position.x + velocity.x, Parent.global_position.y), Vector2(Parent.global_position.x + velocity.x, Parent.global_position.y + 15), [self, Parent], Parent.collision_mask)
 	
-	if is_on_floor and not snap_override:
+	if is_on_floor and not snap_override and !bypass_jump:
 		velocity.y = 8
 		_jumping = false
 		_coyote_time_active = true
@@ -127,11 +132,12 @@ func _y_velocity(velocity: Vector2, delta: float) -> Vector2:
 		_jumps = -1
 	elif _jumps == -1:
 		_jumps = 0
-		
-	velocity = _jump(velocity, delta)
+	
+	if !bypass_jump:
+		velocity = _jump(velocity, delta)
 	
 	# airborne (check after jumping)
-	if not is_on_floor:
+	if not is_on_floor or bypass_jump:
 		
 		if _coyote_time_active and $Coyote.is_stopped():
 			$Coyote.start()
@@ -181,7 +187,7 @@ func _final_movement(velocity: Vector2, delta: float) -> Vector2:
 			if !Parent.is_on_floor():
 				velocity.y = Physics.accel_gravity*delta
 				
-	var snap := Vector2.ZERO if snap_override or _jumping else Vector2(0, Global.TILE_SIZE*0.5)
+	var snap := Vector2.ZERO if snap_override or _jumping or bypass_jump else Vector2(0, Global.TILE_SIZE*0.5)
 	var new_velocity := Parent.move_and_slide_with_snap(velocity, snap, Vector2.UP, true, 4, Physics.FLOOR_MAX_ANGLE)
 	
 	# prevent extreme momentum from jumping up sloped walls
