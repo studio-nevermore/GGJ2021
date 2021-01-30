@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/parts/RoomBoundary.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 120, 67.5 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 18.9977, 77.6479 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 119.147, 25.1766 )
+
 [node name="RoomBoundary" type="Area2D" groups=[
 "prop",
 "roomboundary",
 ]]
-z_index = 500
+z_index = -100
 collision_layer = 64
 collision_mask = 64
 script = ExtResource( 2 )
@@ -21,7 +27,48 @@ position = Vector2( 120, 67.5 )
 shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
+autostart = true
+
+[node name="LeftExit" type="Area2D" parent="."]
+position = Vector2( -1, 9 )
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftExit"]
+position = Vector2( -19, 68 )
+shape = SubResource( 2 )
+
+[node name="RightExit" type="Area2D" parent="."]
+position = Vector2( 279, 9 )
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightExit"]
+position = Vector2( -19, 68 )
+shape = SubResource( 2 )
+
+[node name="UpExit" type="Area2D" parent="."]
+position = Vector2( 279, 0 )
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpExit"]
+position = Vector2( -159, -26 )
+shape = SubResource( 3 )
+
+[node name="DownExit" type="Area2D" parent="."]
+position = Vector2( 279, 187 )
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownExit"]
+position = Vector2( -159, -26 )
+shape = SubResource( 3 )
 [connection signal="body_entered" from="." to="." method="_on_RoomBoundary_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_RoomBoundary_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="LeftExit" to="." method="LeftExit"]
+[connection signal="body_entered" from="RightExit" to="." method="RightExit"]
+[connection signal="body_entered" from="UpExit" to="." method="UpExit"]
+[connection signal="body_entered" from="DownExit" to="." method="DownExit"]

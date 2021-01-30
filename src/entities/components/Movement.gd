@@ -40,6 +40,7 @@ var disable_sign_change := false
 var freeze_gravity := false setget set_freeze_gravity
 var freeze_facing := false
 var bypass_max_speed := false
+var bypass_physics := false
 
 var max_run_mod := 1.0
 
@@ -52,29 +53,33 @@ var _coyote_time_active := true
 func _physics_process(delta):
 	Parent = get_parent() # just in case node hierarchy changes for some reason
 	
-	if !freeze_movement and !is_vel_locked():
-		_velocity = _x_velocity(_velocity, delta)
-		_velocity = _y_velocity(_velocity, delta)
-		_velocity = _final_movement(_velocity, delta)
-		
-		if movement_state == State.HITSTUN and Parent.is_on_floor() and special_jump_height == 0:
-			if !Parent.is_in_group("player") or !Parent.dying:
-				set_movement_state(State.IDLE)
-			else:
-				set_movement_state(State.DEATH)
-				Parent.get_node("DeathTimer").start()
-		
-		if !freeze_facing:
-			#if Parent.is_on_floor():
-			if move_sign < 0:
-				set_facing(Global.HDirs.LEFT)
-			if move_sign > 0:
-				set_facing(Global.HDirs.RIGHT)
-			#else:
-			#	if _velocity.x < 0:
-			#		set_facing(Global.HDirs.LEFT)
-			#	if _velocity.x > 0:
-			#		set_facing(Global.HDirs.RIGHT)
+	if !bypass_physics:
+		if !freeze_movement and !is_vel_locked():
+			_velocity = _x_velocity(_velocity, delta)
+			_velocity = _y_velocity(_velocity, delta)
+			_velocity = _final_movement(_velocity, delta)
+			
+			if movement_state == State.HITSTUN and Parent.is_on_floor() and special_jump_height == 0:
+				if !Parent.is_in_group("player") or !Parent.dying:
+					set_movement_state(State.IDLE)
+				else:
+					set_movement_state(State.DEATH)
+					Parent.get_node("DeathTimer").start()
+			
+			if !freeze_facing:
+				#if Parent.is_on_floor():
+				if move_sign < 0:
+					set_facing(Global.HDirs.LEFT)
+				if move_sign > 0:
+					set_facing(Global.HDirs.RIGHT)
+				#else:
+				#	if _velocity.x < 0:
+				#		set_facing(Global.HDirs.LEFT)
+				#	if _velocity.x > 0:
+				#		set_facing(Global.HDirs.RIGHT)
+				
+	else:
+		Parent.global_position += _velocity * delta
 	
 func _x_velocity(velocity: Vector2, delta: float) -> Vector2:
 	var grounded = (is_grounded() and !beginJump) or movement_state == State.SWIMMING

@@ -15,7 +15,7 @@
 
 [node name="RoomControl" parent="." instance=ExtResource( 1 )]
 has_player = true
-scene_path = "stages/testroom"
+scene_path = "stages/testroom2"
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -28,8 +28,8 @@ texture = ExtResource( 11 )
 [node name="RoomBoundary" parent="Boundaries" instance=ExtResource( 4 )]
 connected_rooms = {
 "Down": "",
-"Left": "testroom2",
-"Right": "",
+"Left": "",
+"Right": "testroom",
 "Up": ""
 }
 

@@ -12,6 +12,8 @@ var current_room
 var current_room_control
 var current_room_path := "misc/title"
 var current_boundary_entrance := -1
+var boundary_exit_pos := Vector2.ZERO
+var boundary_exit_side := -1
 
 var start_from_save := true
 
