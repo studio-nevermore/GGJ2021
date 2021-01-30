@@ -15,6 +15,8 @@ var current_boundary_entrance := -1
 var boundary_exit_pos := Vector2.ZERO
 var boundary_exit_side := -1
 
+var stage_music_level := 0
+
 var start_from_save := true
 
 var gui

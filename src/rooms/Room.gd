@@ -10,6 +10,8 @@ var ext = ".tscn"
 var music_started := false
 var music_fading := -1.0
 
+var stage_music := ["Music"]
+
 func _ready():
 	Global.gui.connect("fade_finished", self, "fadetimer_over")
 	Global.gui.fade_screen(false)
@@ -76,6 +78,8 @@ func fadeout():
 	Global.gui.fade_screen()
 
 func play_music(trackname):
+	if trackname == "":
+		trackname = stage_music[Global.stage_music_level]
 	var n = get_node_or_null(trackname)
 	if n and n.stream:
 		set_music(trackname)
@@ -84,6 +88,8 @@ func play_music(trackname):
 			game_music.playing = true
 
 func set_music(trackname):
+	if trackname == "":
+		trackname = stage_music[Global.stage_music_level]
 	music_fading = -1
 	Stats.set_setting(Stats.Settings.music_vol)
 	var n = get_node_or_null(trackname)
@@ -105,7 +111,7 @@ func fade_music():
 func _on_Timer_timeout():
 	DataManager.settings_load()
 	
-	set_music("Music")
+	set_music("")
 	
 	for b in get_tree().get_nodes_in_group("roomboundary"):
 		if b is RoomBoundary:
@@ -115,7 +121,7 @@ func _on_Timer_timeout():
 func fadetimer_over(out):
 	if !out and !music_started:
 		if SceneManager.game_view:
-			play_music("Music")
+			play_music("")
 			music_started = true
 		#$Music.playing = true
 	if has_player:
