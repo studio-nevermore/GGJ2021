@@ -39,6 +39,7 @@ var disable_sign_change := false
 
 var freeze_gravity := false setget set_freeze_gravity
 var freeze_facing := false
+var knocked_back := false
 var bypass_max_speed := false
 var bypass_physics := false
 
@@ -87,6 +88,9 @@ func _x_velocity(velocity: Vector2, delta: float) -> Vector2:
 	# multiply by delta to convert to pixels/frame
 	var accel_x = (Physics.accel_run if grounded else Physics.accel_air) * delta
 	var decel_x = (Physics.decel_run if grounded else Physics.decel_air) * delta
+	if knocked_back:
+		move_sign = 0
+		decel_x = Physics.decel_knockback * delta
 	
 	var max_speed = Physics.max_run_speed #(Physics.max_run_speed if grounded else Physics.jump_vel.x)
 	max_speed *= move_sign * max_run_mod # analog strength of movement, if applicable

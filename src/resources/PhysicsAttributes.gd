@@ -11,6 +11,7 @@ export(float) var accel_run = 36 setget ,get_accel_run
 export(float) var decel_run = 120 setget ,get_decel_run
 export(float) var accel_air = 90 setget ,get_accel_air
 export(float) var decel_air = 60 setget ,get_decel_air
+export(float) var decel_knockback = 60 setget ,get_decel_knockback
 
 export(float) var accel_gravity = 120 setget ,get_accel_gravity
 export(float) var accel_jump = 60 setget ,get_accel_jump
@@ -58,6 +59,9 @@ func get_accel_air() -> float:
 
 func get_decel_air() -> float:
 	return decel_air * Global.TILE_SIZE
+
+func get_decel_knockback() -> float:
+	return decel_knockback * Global.TILE_SIZE
 
 func get_accel_gravity() -> float:
 	return accel_gravity * Global.TILE_SIZE

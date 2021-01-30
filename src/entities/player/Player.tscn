@@ -25,6 +25,7 @@ accel_run = 62.0
 decel_run = 45.0
 accel_air = 90.0
 decel_air = 30.0
+decel_knockback = 60.0
 accel_gravity = 42.0
 accel_jump = 25.0
 max_run_speed = 6.0
@@ -40,7 +41,8 @@ jump_length = 5.0
 accel_run = 62.0
 decel_run = 45.0
 accel_air = 45.0
-decel_air = 0.0
+decel_air = 20.0
+decel_knockback = 80.0
 accel_gravity = 90.0
 accel_jump = 40.0
 max_run_speed = 10.0
@@ -57,6 +59,7 @@ accel_run = 8.0
 decel_run = 8.0
 accel_air = 8.0
 decel_air = 8.0
+decel_knockback = 60.0
 accel_gravity = 15.0
 accel_jump = 5.0
 max_run_speed = 1.5
@@ -280,12 +283,24 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
+[node name="ProjectileBuffer" type="Timer" parent="PlayerControls"]
+wait_time = 0.1
+one_shot = true
+
+[node name="ProjectileCooldown" type="Timer" parent="PlayerControls"]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="ProjectileRecoil" type="Timer" parent="PlayerControls"]
+wait_time = 0.25
+one_shot = true
+
 [node name="Animations" type="AnimatedSprite" parent="."]
 use_parent_material = true
 position = Vector2( 0, -12 )
 frames = SubResource( 14 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 5 )
 
@@ -312,5 +327,6 @@ anims/warp_in = SubResource( 20 )
 [connection signal="facing_changed" from="Movement" to="Animations" method="_on_Movement_facing_changed"]
 [connection signal="movement_state_changed" from="Movement" to="Animations" method="_on_Movement_movement_state_changed"]
 [connection signal="movement_state_changed" from="Movement" to="." method="_on_Movement_movement_state_changed"]
+[connection signal="timeout" from="PlayerControls/ProjectileRecoil" to="PlayerControls" method="_on_ProjectileRecoil_timeout"]
 [connection signal="frame_changed" from="Animations" to="Animations" method="_on_Animations_frame_changed"]
 [connection signal="timeout" from="Animations/BlinkTimer" to="Animations" method="_on_BlinkTimer_timeout"]

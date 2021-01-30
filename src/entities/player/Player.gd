@@ -19,6 +19,7 @@ func _process(delta):
 		Stats.game_data[Stats.Data.upgrade_swim] = 1
 	if Input.is_action_just_pressed("debug_3"):
 		Stats.game_data[Stats.Data.upgrade_melee] = 1
+		Stats.game_data[Stats.Data.upgrade_projectile] = 1
 	
 func set_depth() -> void:
 	z_index = 75

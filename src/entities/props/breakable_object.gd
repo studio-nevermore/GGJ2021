@@ -13,7 +13,10 @@ func _process(delta):
 				material.set_shader_param("intensity", 0)
 
 func _on_Hurtbox_area_entered(area):
-	hp -= 1
+	if area is Projectile:
+		hp -= 5
+	else:
+		hp -= 1
 	if hp <= 0:
 		var explode = explode_scene.instance()
 		var dying = true
