@@ -98,6 +98,11 @@ _global_script_classes=[ {
 "class": "SlopeChecker",
 "language": "GDScript",
 "path": "res://src/entities/player/SlopeChecker.gd"
+}, {
+"base": "Area2D",
+"class": "Water",
+"language": "GDScript",
+"path": "res://src/entities/props/water.gd"
 } ]
 _global_script_class_icons={
 "AnimationController": "",
@@ -117,7 +122,8 @@ _global_script_class_icons={
 "PlayerPhysics": "",
 "Room": "",
 "RoomBoundary": "",
-"SlopeChecker": ""
+"SlopeChecker": "",
+"Water": ""
 }
 
 [application]

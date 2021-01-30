@@ -2,6 +2,7 @@ class_name Player
 extends Entity
 
 var dying := false
+var last_ground := Vector2.ZERO
 
 func _ready():
 	add_to_group("player")
@@ -9,6 +10,8 @@ func _ready():
 func _process(delta):
 	if dying:
 		$PlayerControls.controls_disabled = true
+	if Input.is_action_just_pressed("debug_1"):
+		Stats.game_data[Stats.Data.upgrade_swim] = 1
 	
 func set_depth() -> void:
 	z_index = 75

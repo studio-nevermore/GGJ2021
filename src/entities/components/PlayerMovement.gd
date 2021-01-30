@@ -4,7 +4,7 @@ extends Movement
 var normal_node: PlayerPhysics
 var water_node: PlayerPhysics
 
-#var space_state
+var space_state
 
 func _ready():
 	for ch in get_children():
@@ -21,3 +21,7 @@ func _physics_process(delta):
 		normal_node.Physics.decel_run = 60
 		
 	Physics = normal_node.Physics
+	
+	space_state = get_world_2d().direct_space_state
+	if Parent.is_on_floor() and space_state.intersect_ray(Vector2(Parent.global_position.x + 24 * sign(_velocity.x), Parent.global_position.y), Vector2(Parent.global_position.x + 24 * sign(_velocity.x), Parent.global_position.y + 15), [self, Parent], Parent.collision_mask):
+		Parent.last_ground = Parent.global_position

@@ -17,9 +17,11 @@ func freeze_completely():
 		pmove.move_sign = 0
 		pmove.freeze_gravity = true
 	parent.get_node("PlayerControls").controls_disabled = true
+	parent.get_node("Animations").stop = true
 	
 func unfreeze_completely():
 	var pmove = parent.get_node("Movement")
 	if pmove:
 		pmove.freeze_gravity = false
 	parent.get_node("PlayerControls").controls_disabled = false
+	parent.get_node("Animations").stop = false

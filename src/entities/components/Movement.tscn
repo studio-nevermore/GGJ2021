@@ -10,7 +10,7 @@ Physics = SubResource( 1 )
 
 [node name="Coyote" type="Timer" parent="."]
 process_mode = 0
-wait_time = 0.11
+wait_time = 0.08
 one_shot = true
 
 [node name="Signlock" type="Timer" parent="."]

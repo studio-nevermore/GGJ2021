@@ -10,7 +10,8 @@ enum State {
 	JUMPING,
 	FALLING,
 	HITSTUN,
-	DEATH
+	DEATH,
+	SWIMMING
 }
 
 # PhysicsAttributes
@@ -76,7 +77,7 @@ func _physics_process(delta):
 			#		set_facing(Global.HDirs.RIGHT)
 	
 func _x_velocity(velocity: Vector2, delta: float) -> Vector2:
-	var grounded = is_grounded() and !beginJump
+	var grounded = (is_grounded() and !beginJump) or movement_state == State.SWIMMING
 	
 	# multiply by delta to convert to pixels/frame
 	var accel_x = (Physics.accel_run if grounded else Physics.accel_air) * delta
@@ -115,6 +116,9 @@ func _y_velocity(velocity: Vector2, delta: float) -> Vector2:
 	# jumping
 	if is_on_floor:
 		_jumps = -1
+	elif _jumps == -1:
+		_jumps = 0
+		
 	velocity = _jump(velocity, delta)
 	
 	# airborne (check after jumping)
@@ -181,9 +185,8 @@ func _jump(velocity: Vector2, delta: float, override_check: bool = false) -> Vec
 	# need to assign this here because _jumping can be modified prior to this
 	var moveJump :=  not drop and (beginJump)# or (_jumping and holdJump))
 	
-	if special_jump_height < 0 or (!Parent.is_on_floor() and moveJump and _jumps < Stats.game_data[Stats.Data.upgrade_jump2]):
+	if special_jump_height < 0 or (moveJump and movement_state == State.SWIMMING) or (!Parent.is_on_floor() and moveJump and _jumps < Stats.game_data[Stats.Data.upgrade_jump2]):
 		override_check = true
-		print("a")
 	
 	var is_on_floor = Parent.is_on_floor()
 	if is_on_floor or _coyote_time_active or override_check:
@@ -232,7 +235,7 @@ func is_input_locked():
 
 func state_priority():
 	match movement_state:
-		State.HITSTUN, State.DEATH:
+		State.HITSTUN, State.DEATH, State.SWIMMING:
 			return true
 	return false
 
