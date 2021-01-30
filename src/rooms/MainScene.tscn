@@ -74,17 +74,17 @@ anims/unfade = SubResource( 1 )
 [node name="FPSBack" type="Label" parent="GameContainer/GameView/GUI"]
 modulate = Color( 0, 0, 0, 1 )
 margin_left = 6.0
-margin_top = 163.0
+margin_top = 118.0
 margin_right = 46.0
-margin_bottom = 184.0
+margin_bottom = 139.0
 custom_fonts/font = ExtResource( 11 )
 text = "60"
 
 [node name="FPS" type="Label" parent="GameContainer/GameView/GUI"]
 margin_left = 5.0
-margin_top = 163.0
+margin_top = 118.0
 margin_right = 45.0
-margin_bottom = 184.0
+margin_bottom = 139.0
 custom_fonts/font = ExtResource( 11 )
 text = "60"
 

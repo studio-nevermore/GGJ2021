@@ -104,6 +104,6 @@ func set_all_settings():
 		i += 1
 
 func temp_set_screen() -> void:
-	OS.set_window_size(Vector2(game_settings[Settings.screen_size] * Global.VIEW_SIZE.x, game_settings[Settings.screen_size] * Global.VIEW_SIZE.y))
+	OS.set_window_size(Vector2(game_settings[Settings.screen_size] * Global.VIEW_SIZE.x * 2, game_settings[Settings.screen_size] * Global.VIEW_SIZE.y * 2))
 	OS.set_window_position(OS.get_screen_size() * 0.5 - OS.get_window_size() * 0.5)
 	emit_signal("screen_set")
