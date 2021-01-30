@@ -1,8 +1,8 @@
 class_name Room
 extends Node2D
 
-export(bool) var is_stage = false
 export(bool) var has_player = false
+export(Vector2) var map_cell = Vector2(-1, -1)
 export(String) var scene_path = ""
 
 var dir = "src/rooms/"
@@ -25,6 +25,10 @@ func _ready():
 	
 	if has_player:
 		Global.get_player().get_node("Movement").facing = Stats.player_direction
+		
+	if map_cell != Vector2(-1, -1):
+		Stats.game_data[Stats.Data.map_cells + map_cell.x + map_cell.y * 4] = 1
+		SceneManager.game_view.get_node("GUI/Map").selected_cell = map_cell
 	
 	reready()
 

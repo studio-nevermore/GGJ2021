@@ -301,6 +301,7 @@ use_parent_material = true
 position = Vector2( 0, -12 )
 frames = SubResource( 14 )
 animation = "idle"
+frame = 1
 playing = true
 script = ExtResource( 5 )
 

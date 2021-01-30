@@ -22,7 +22,9 @@ enum Data {
 	upgrade_swim,
 	upgrade_magnet,
 	
-	flags
+	map_cells,
+	
+	flags = 50
 }
 
 enum Flags {
@@ -31,7 +33,7 @@ enum Flags {
 
 signal screen_set()
 
-const data_version = 0
+const data_version = 1
 
 var game_data := []
 var game_settings := []

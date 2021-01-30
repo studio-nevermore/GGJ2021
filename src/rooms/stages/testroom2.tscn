@@ -14,8 +14,8 @@
 [node name="Room" type="Node2D"]
 
 [node name="RoomControl" parent="." instance=ExtResource( 1 )]
-is_stage = true
 has_player = true
+map_cell = Vector2( 0, 0 )
 scene_path = "stages/testroom2"
 
 [node name="Sprite" type="Sprite" parent="."]

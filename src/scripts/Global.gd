@@ -124,10 +124,11 @@ func approach_vector(current: Vector2, target: Vector2, increase: float) -> Vect
 		
 func shift_index(current, minval, maxval, inc):
 	current += inc
+	
 	if current > maxval:
 		current = minval + (current - 1) - maxval
 	if current < minval:
-		current = maxval - minval - (current - 1)
+		current = maxval - minval - abs((current - 1))
 		
 	return current
 	

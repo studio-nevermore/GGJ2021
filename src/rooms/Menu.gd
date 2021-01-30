@@ -5,6 +5,7 @@ var current_path = []
 var cursor = 0
 var lock_input = false
 var temp_settings = ["", 0, 0]
+var open := false
 
 var font = preload("res://assets/fonts/Silver.tres")
 
@@ -50,6 +51,7 @@ func _process(delta):
 	if !lock_input:
 		if Global.current_pausestate == Global.PauseState.NORMAL:
 			if Input.is_action_just_pressed("ui_menu"):
+				open = true
 				Global.set_pause_state(Global.PauseState.PAUSED)
 				menu_close_buffer = true
 				cursor = 0
@@ -57,7 +59,7 @@ func _process(delta):
 				current_path.append("base")
 				set_visuals(true)
 			
-		if Global.current_pausestate == Global.PauseState.PAUSED:
+		if Global.current_pausestate == Global.PauseState.PAUSED and open:
 			var point = current_path[-1]
 			var options = options_branches[point]
 			
@@ -97,6 +99,7 @@ func _process(delta):
 								current_path.pop_back()
 								if current_path.size() == 0:
 									Global.set_pause_state(Global.PauseState.NORMAL)
+									open = false
 								else:
 									set_visuals(true)
 							"quit_to_title":
@@ -117,6 +120,7 @@ func _process(delta):
 					current_path.pop_back()
 					if current_path.size() == 0:
 						Global.set_pause_state(Global.PauseState.NORMAL)
+						open = false
 					else:
 						set_visuals(true)
 					
@@ -146,7 +150,8 @@ func _process(delta):
 					
 			if Input.is_action_just_pressed("ui_menu") and !menu_close_buffer:
 				Global.set_pause_state(Global.PauseState.NORMAL)
-	visible = Global.current_pausestate == Global.PauseState.PAUSED
+				open = false
+	visible = Global.current_pausestate == Global.PauseState.PAUSED and open
 
 func set_visuals(reload_nodes = false):
 	var point = current_path[-1]
