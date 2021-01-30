@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/entities/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/components/Movement.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/entities/player/AnimationController.gd" type="Script" id=5]
 [ext_resource path="res://assets/entities/player.png" type="Texture" id=6]
 [ext_resource path="res://src/resources/PhysicsAttributes.gd" type="Script" id=7]
+[ext_resource path="res://assets/entities/blink.png" type="Texture" id=8]
 [ext_resource path="res://src/entities/player/PlayerPhysics.gd" type="Script" id=11]
 [ext_resource path="res://src/entities/components/PlayerMovement.gd" type="Script" id=12]
 [ext_resource path="res://src/entities/components/PlayerEvents.gd" type="Script" id=15]
@@ -276,9 +277,18 @@ use_parent_material = true
 position = Vector2( 0, -12 )
 frames = SubResource( 14 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 5 )
+
+[node name="Blink" type="Sprite" parent="Animations"]
+position = Vector2( -2, -4 )
+texture = ExtResource( 8 )
+centered = false
+hframes = 2
+
+[node name="BlinkTimer" type="Timer" parent="Animations"]
+one_shot = true
+autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -6 )
@@ -293,3 +303,5 @@ anims/warp_in = SubResource( 20 )
 [connection signal="facing_changed" from="Movement" to="Animations" method="_on_Movement_facing_changed"]
 [connection signal="movement_state_changed" from="Movement" to="Animations" method="_on_Movement_movement_state_changed"]
 [connection signal="movement_state_changed" from="Movement" to="." method="_on_Movement_movement_state_changed"]
+[connection signal="frame_changed" from="Animations" to="Animations" method="_on_Animations_frame_changed"]
+[connection signal="timeout" from="Animations/BlinkTimer" to="Animations" method="_on_BlinkTimer_timeout"]
