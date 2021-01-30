@@ -1,0 +1,12 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform float intensity;
+
+void fragment() {
+	vec4 base_color = texture(TEXTURE, UV);
+	float max_val = (base_color.r + base_color.g + base_color.b) / 3.0;
+	COLOR = vec4(base_color.r - (0.4 * intensity), base_color.g + (0.2 * intensity), base_color.b + (0.4 * intensity), base_color.a);
+}"

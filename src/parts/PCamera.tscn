@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/parts/PCamera.gd" type="Script" id=1]
+
+[node name="PCamera" type="Node2D" groups=[
+"camera",
+]]
+script = ExtResource( 1 )
+
+[node name="ShakeTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+[connection signal="timeout" from="ShakeTimer" to="." method="_on_ShakeTimer_timeout"]

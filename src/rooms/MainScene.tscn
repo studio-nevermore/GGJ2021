@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/rooms/misc/title.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/rooms/GameContainer.gd" type="Script" id=2]
+[ext_resource path="res://src/rooms/GUI.gd" type="Script" id=4]
+[ext_resource path="res://src/rooms/GameView.gd" type="Script" id=10]
+[ext_resource path="res://assets/fonts/Silver.tres" type="DynamicFont" id=11]
+[ext_resource path="res://src/rooms/Menu.gd" type="Script" id=13]
+[ext_resource path="res://assets/gui/menu/shop_cursor.png" type="Texture" id=14]
+
+[sub_resource type="Animation" id=1]
+resource_name = "unfade"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="MainScene" type="Node2D"]
+
+[node name="GameContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 320.0
+margin_bottom = 180.0
+stretch = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameView" type="Viewport" parent="GameContainer"]
+size = Vector2( 320, 180 )
+handle_input_locally = false
+disable_3d = true
+usage = 0
+render_target_update_mode = 3
+script = ExtResource( 10 )
+
+[node name="GUI" type="Node2D" parent="GameContainer/GameView"]
+pause_mode = 2
+process_priority = 1
+z_index = 500
+script = ExtResource( 4 )
+
+[node name="Menu" type="ColorRect" parent="GameContainer/GameView/GUI"]
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 13 )
+
+[node name="Cursor0" type="Sprite" parent="GameContainer/GameView/GUI/Menu"]
+texture = ExtResource( 14 )
+
+[node name="Cursor1" type="Sprite" parent="GameContainer/GameView/GUI/Menu"]
+texture = ExtResource( 14 )
+
+[node name="ScreenFade" type="ColorRect" parent="GameContainer/GameView/GUI"]
+visible = false
+margin_right = 2000.0
+margin_bottom = 2000.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameContainer/GameView/GUI/ScreenFade"]
+anims/unfade = SubResource( 1 )
+
+[node name="FPSBack" type="Label" parent="GameContainer/GameView/GUI"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 6.0
+margin_top = 163.0
+margin_right = 46.0
+margin_bottom = 184.0
+custom_fonts/font = ExtResource( 11 )
+text = "60"
+
+[node name="FPS" type="Label" parent="GameContainer/GameView/GUI"]
+margin_left = 5.0
+margin_top = 163.0
+margin_right = 45.0
+margin_bottom = 184.0
+custom_fonts/font = ExtResource( 11 )
+text = "60"
+
+[node name="Music" type="AudioStreamPlayer" parent="GameContainer/GameView"]
+pause_mode = 2
+bus = "Music"
+
+[node name="TitleScreen" parent="GameContainer/GameView" instance=ExtResource( 1 )]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/components/Movement.gd" type="Script" id=1]
+
+[sub_resource type="Resource" id=1]
+
+[node name="Movement" type="Node2D"]
+script = ExtResource( 1 )
+Physics = SubResource( 1 )
+
+[node name="Coyote" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.11
+one_shot = true
+
+[node name="Signlock" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+[connection signal="timeout" from="Coyote" to="." method="_on_Coyote_timeout"]
+[connection signal="timeout" from="Signlock" to="." method="_on_Signlock_timeout"]

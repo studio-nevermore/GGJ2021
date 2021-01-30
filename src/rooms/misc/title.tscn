@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/rooms/RoomControl.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/rooms/misc/title.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/Silver.tres" type="DynamicFont" id=3]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="RoomControl" parent="." instance=ExtResource( 1 )]
+uses_camera = false
+scene_path = "misc/title"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 11.5087
+margin_top = 10.9134
+margin_right = 113.509
+margin_bottom = 60.9134
+custom_fonts/font = ExtResource( 3 )
+text = "hwewwo
+pleas pwess z"
+__meta__ = {
+"_edit_use_anchors_": false
+}
