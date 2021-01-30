@@ -2,7 +2,7 @@ extends Node2D
 
 const TILE_SIZE = 8
 const ONE_FRAME = 1.0/60.0
-const VIEW_SIZE = Vector2(320, 180)
+const VIEW_SIZE = Vector2(240, 135)
 
 var current_pausestate = PauseState.NORMAL
 var old_pausestate = PauseState.NORMAL
