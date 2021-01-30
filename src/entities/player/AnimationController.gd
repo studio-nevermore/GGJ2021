@@ -1,6 +1,12 @@
 class_name AnimationController
 extends AnimatedSprite
 
+var floortime := false
+
+func _process(delta):
+	if !get_parent().is_on_floor():
+		floortime = true
+
 func _on_Movement_movement_state_changed(previous, new):
 	var a
 	match new:
@@ -18,6 +24,11 @@ func _on_Movement_movement_state_changed(previous, new):
 			a = "death"
 	if a:
 		play(a)
+		
+	if floortime and get_parent().is_on_floor():
+		floortime = false
+		if new == Movement.State.RUNNING:
+			frame = 1
 
 func _on_Movement_facing_changed(previous, new):
 	if new == Global.HDirs.LEFT:

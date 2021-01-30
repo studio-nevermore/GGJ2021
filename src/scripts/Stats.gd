@@ -11,6 +11,17 @@ enum Data {
 	version,
 	room,
 	checkpoint,
+	
+	upgrade_jump,
+	upgrade_jump2,
+	upgrade_speed,
+	upgrade_melee,
+	
+	upgrade_map,
+	upgrade_projectile,
+	upgrade_swim,
+	upgrade_magnet,
+	
 	flags
 }
 

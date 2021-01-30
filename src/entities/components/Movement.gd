@@ -43,7 +43,7 @@ var bypass_max_speed := false
 var max_run_mod := 1.0
 
 var _jumping := false
-var wall_holding := 0
+var _jumps := -1
 
 var _velocity := Vector2()
 var _coyote_time_active := true
@@ -113,6 +113,8 @@ func _y_velocity(velocity: Vector2, delta: float) -> Vector2:
 	var moveJump :=  not drop and (beginJump or (_jumping and holdJump))
 	
 	# jumping
+	if is_on_floor:
+		_jumps = -1
 	velocity = _jump(velocity, delta)
 	
 	# airborne (check after jumping)
@@ -179,8 +181,9 @@ func _jump(velocity: Vector2, delta: float, override_check: bool = false) -> Vec
 	# need to assign this here because _jumping can be modified prior to this
 	var moveJump :=  not drop and (beginJump)# or (_jumping and holdJump))
 	
-	if wall_holding or special_jump_height < 0:
+	if special_jump_height < 0 or (!Parent.is_on_floor() and moveJump and _jumps < Stats.game_data[Stats.Data.upgrade_jump2]):
 		override_check = true
+		print("a")
 	
 	var is_on_floor = Parent.is_on_floor()
 	if is_on_floor or _coyote_time_active or override_check:
@@ -192,6 +195,7 @@ func _jump(velocity: Vector2, delta: float, override_check: bool = false) -> Vec
 				special_jump_height = 0
 			velocity.x = min(abs(velocity.x), Physics.jump_vel.x)*sign(velocity.x)
 			_jumping = true
+			_jumps += 1
 			_coyote_time_active = false
 			
 	return velocity

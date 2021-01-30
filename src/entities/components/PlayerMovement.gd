@@ -14,7 +14,10 @@ func _ready():
 			normal_node = ch
 
 func _physics_process(delta):
-	#if get_parent().is_in_water:
-	#	Physics = water_node.Physics
-	#else:
+	if Stats.game_data[Stats.Data.upgrade_jump]:
+		normal_node.Physics.jump_height = 3.5
+	if Stats.game_data[Stats.Data.upgrade_speed]:
+		normal_node.Physics.max_run_speed = 14
+		normal_node.Physics.decel_run = 60
+		
 	Physics = normal_node.Physics
