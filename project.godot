@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/rooms/GUI.gd"
 }, {
+"base": "CanvasLayer",
+"class": "GlitchScreen",
+"language": "GDScript",
+"path": "res://src/parts/GlitchScreen.gd"
+}, {
 "base": "Sprite",
 "class": "Map",
 "language": "GDScript",
@@ -138,6 +143,7 @@ _global_script_class_icons={
 "EventHandler": "",
 "ExplodeEffect": "",
 "GUI": "",
+"GlitchScreen": "",
 "Map": "",
 "Menu": "",
 "Movement": "",

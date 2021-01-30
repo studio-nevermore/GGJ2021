@@ -104,7 +104,7 @@ func _process(delta):
 									set_visuals(true)
 							"quit_to_title":
 								lock_input = true
-								Global.current_room_control.room_change("misc/title")
+								Global.current_room_control.room_change("misc/title", false)
 							"quit_to_desktop":
 								lock_input = true
 								Global.current_room_control.game_end()

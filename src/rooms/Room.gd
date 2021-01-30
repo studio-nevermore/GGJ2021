@@ -14,7 +14,10 @@ var stage_music := ["Music"]
 
 func _ready():
 	Global.gui.connect("fade_finished", self, "fadetimer_over")
-	Global.gui.fade_screen(false)
+	if Global.gui.get_node("ScreenFade").modulate.a == 1:
+		Global.gui.fade_screen(false)
+	else:
+		fadetimer_over(false)
 	
 	Global.current_room = get_parent()
 	Global.current_room_control = self
@@ -31,6 +34,8 @@ func _ready():
 		SceneManager.game_view.get_node("GUI/Map").selected_cell = map_cell
 	
 	reready()
+	
+	_on_Timer_timeout()
 
 func reready():
 	Global.gui.global_position = Vector2.ZERO
@@ -55,12 +60,18 @@ func room_restart(from_save = false):
 	
 	room_change(Global.current_room_path)
 	
-func room_change(path):
+func room_change(path, is_stage = true):
 	Global.set_pause_state(Global.PauseState.EVENT)
 	if has_player:
 		Global.get_player().get_node("PlayerControls").fade_buffer = true
-	fadeout()
-	yield(Global.gui, "fade_finished")
+	if !is_stage:
+		fadeout()
+		yield(Global.gui, "fade_finished")
+	else:
+		$ExitTimer.start()
+		yield($ExitTimer, "timeout")
+		$GlitchScreen.glitch_out()
+		yield($GlitchScreen, "glitch_over")
 	room_end()
 	
 	SceneManager.load_scene(path)
