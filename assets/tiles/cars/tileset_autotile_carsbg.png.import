@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tileset_cars.png-21fba5ae05bb2ca6eafb25592f9a096c.stex"
+path="res://.import/tileset_autotile_carsbg.png-bfcdffbc950bfa65d74fd5c08c357a8e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/tileset_cars.png"
-dest_files=[ "res://.import/tileset_cars.png-21fba5ae05bb2ca6eafb25592f9a096c.stex" ]
+source_file="res://assets/tiles/cars/tileset_autotile_carsbg.png"
+dest_files=[ "res://.import/tileset_autotile_carsbg.png-bfcdffbc950bfa65d74fd5c08c357a8e.stex" ]
 
 [params]
 
