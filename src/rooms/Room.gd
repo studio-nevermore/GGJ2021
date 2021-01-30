@@ -3,7 +3,6 @@ extends Node2D
 
 export(bool) var is_stage = false
 export(bool) var has_player = false
-export(bool) var uses_camera = true
 export(String) var scene_path = ""
 
 var dir = "src/rooms/"
@@ -70,7 +69,6 @@ func room_end():
 	if Global.current_room == get_parent():
 		Global.current_room = null
 		Global.current_room_control = null
-		Global.override_boundary_assign = true
 		
 	DataManager.data_save()
 

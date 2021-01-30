@@ -30,8 +30,6 @@ func _physics_process(_delta):
 			
 			pressRight = 1 if Input.is_action_just_pressed("game_right") else 0
 			pressLeft = 1 if Input.is_action_just_pressed("game_left") else 0
-		
-			get_parent().looking_up = Input.is_action_pressed("game_up")
 			
 			MovementController.beginJump = Input.is_action_just_pressed("game_jump")
 			MovementController.holdJump = Input.is_action_pressed("game_jump")

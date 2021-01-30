@@ -14,14 +14,7 @@ func _ready():
 			normal_node = ch
 
 func _physics_process(delta):
-	pass
-	#space_state = get_world_2d().direct_space_state
 	#if get_parent().is_in_water:
 	#	Physics = water_node.Physics
 	#else:
-	#	Physics = normal_node.Physics
-
-#func _jump(velocity: Vector2, delta: float, override_check: bool = false) -> void:
-#	# need to assign this here because _jumping can be modified prior to this
-#	var moveJump :=  not drop and (beginJump or (_jumping and holdJump))
-#	pass
+	Physics = normal_node.Physics

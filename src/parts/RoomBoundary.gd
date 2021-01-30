@@ -2,26 +2,24 @@ class_name RoomBoundary
 extends Area2D
 
 var entrances := []
-export(int) var index := 0
 
 func _ready():
 	for e in get_tree().get_nodes_in_group("boundaryentrance"):
-		if e.boundary == index:
-			entrances.append(e)
+		entrances.append(e)
 
 func move_player():
 	var p = Global.get_player()
 	
 	if Global.current_boundary_entrance == -1:
 		var closest
-		for e in entrances:
+		for e in get_tree().get_nodes_in_group("boundaryentrance"):
 			if !closest:
 				closest = e
 			elif p.global_position.distance_to(e.global_position) < p.global_position.distance_to(closest.global_position):
 				closest = e
 		Global.current_boundary_entrance = closest.entrance
 			
-	for e in entrances:
+	for e in get_tree().get_nodes_in_group("boundaryentrance"):
 		if e.entrance == Global.current_boundary_entrance:
 			#var face = Global.HDirs.RIGHT
 			#if sign(e.scale.x) == -1:

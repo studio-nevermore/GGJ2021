@@ -1,9 +1,6 @@
 class_name AnimationController
 extends AnimatedSprite
 
-func _process(delta):
-	$Hat.offset.x = offset.x
-
 func _on_Movement_movement_state_changed(previous, new):
 	var a
 	match new:
