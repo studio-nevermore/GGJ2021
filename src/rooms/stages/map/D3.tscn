@@ -64,7 +64,7 @@ exit_room = "map/D4"
 exit_direction = 4
 
 [node name="BoundaryExit3" parent="Boundaries" instance=ExtResource( 4 )]
-position = Vector2( 123, -9 )
+position = Vector2( 124, -80 )
 scale = Vector2( 12.48, 0.84 )
 exit_room = "map/C3"
 exit_direction = 1
@@ -175,10 +175,10 @@ position = Vector2( 80, 136 )
 scale = Vector2( 130.143, 0.830754 )
 
 [node name="BreakWall" parent="." instance=ExtResource( 5 )]
-position = Vector2( 136, 48 )
+position = Vector2( 152, 56 )
 
 [node name="BreakWall2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 160, 48 )
+position = Vector2( 168, 48 )
 
 [node name="BreakWall3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 168, 64 )
