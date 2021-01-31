@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/rooms/stages/title.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/rooms/GameContainer.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/gui/menu/shop_cursor.png" type="Texture" id=14]
 [ext_resource path="res://assets/gui/hud.png" type="Texture" id=15]
 [ext_resource path="res://assets/entities/props/items.png" type="Texture" id=16]
+[ext_resource path="res://assets/gui/map/map_full.png" type="Texture" id=17]
 
 [sub_resource type="Animation" id=1]
 resource_name = "appear"
@@ -171,6 +172,12 @@ autowrap = true
 [node name="MapTop" type="Sprite" parent="GameContainer/GameView/GUI/Map"]
 texture = ExtResource( 7 )
 centered = false
+
+[node name="MapFull" type="Sprite" parent="GameContainer/GameView/GUI/Map"]
+position = Vector2( 120, 67.5 )
+texture = ExtResource( 17 )
+vframes = 4
+hframes = 4
 
 [node name="ScreenFade" type="ColorRect" parent="GameContainer/GameView/GUI"]
 visible = false
