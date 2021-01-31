@@ -41,6 +41,9 @@ script = ExtResource( 2 )
 [node name="RoomControl" parent="." instance=ExtResource( 1 )]
 scene_path = "title"
 
+[node name="Music" parent="RoomControl" index="1"]
+stream = null
+
 [node name="Label" type="Label" parent="."]
 margin_left = 11.5087
 margin_top = 10.9134
@@ -73,3 +76,5 @@ position = Vector2( 121, 105 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 5 )
 color = Color( 1, 0.847059, 0.588235, 1 )
+
+[editable path="RoomControl"]

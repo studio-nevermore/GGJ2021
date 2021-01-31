@@ -15,6 +15,7 @@ func _process(delta):
 		Stats.game_data[Stats.Data.upgrade_jump] = 1
 		Stats.game_data[Stats.Data.upgrade_jump2] = 1
 		Stats.game_data[Stats.Data.upgrade_speed] = 1
+		Stats.game_data[Stats.Data.upgrade_map] = 1
 	if Input.is_action_just_pressed("debug_2"):
 		Stats.game_data[Stats.Data.upgrade_swim] = 1
 		Stats.game_data[Stats.Data.upgrade_magnet] = 1

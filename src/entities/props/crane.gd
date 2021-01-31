@@ -30,6 +30,7 @@ func event_stuff():
 	yield($Timer, "timeout")
 	
 	Global.gui.get_node("ScreenFade").modulate.a = 1
+	Global.current_room_control.stop_music()
 	
 	$Timer.start(4)
 	yield($Timer, "timeout")

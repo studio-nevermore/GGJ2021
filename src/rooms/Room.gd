@@ -138,7 +138,9 @@ func set_music(trackname):
 		if !game_music.stream or game_music.stream.data != n.stream.data:
 			game_music.stream = n.stream
 			game_music.playing = false
-			
+	else:
+		stop_music()
+	
 func stop_music():
 	var game_music = SceneManager.game_view.get_node("Music")
 	game_music.playing = false

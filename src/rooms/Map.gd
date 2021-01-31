@@ -25,6 +25,8 @@ var mapcells_name = [
 var selected_cell := Vector2(-1, -1)
 var open := false
 
+var fullmap := false
+
 func _ready():
 	var mapcell_base = $Cells/MapCell
 	var w = 0
@@ -69,8 +71,19 @@ func _process(delta):
 			$AnimationPlayer.play("appear")
 	if Global.current_pausestate == Global.PauseState.PAUSED and open and !$AnimationPlayer.is_playing():
 		if Input.is_action_just_pressed("ui_map"):
+			fullmap = false
 			$AnimationPlayer.play("disappear")
-						
+			
+		if Input.is_action_just_pressed("ui_accept"):
+			if fullmap or Stats.game_data[Stats.Data.upgrade_map]:
+				fullmap = !fullmap
+			
+		if Input.is_action_just_pressed("ui_cancel"):
+			if fullmap:
+				fullmap = false
+			else:
+				$AnimationPlayer.play("disappear")
+		
 		var move_dir = Vector2.ZERO
 		if Input.is_action_just_pressed("ui_left"):
 			move_dir.x = -1
@@ -96,7 +109,8 @@ func _process(delta):
 		scell.material.set_shader_param("intensity", 1.0)
 			
 	visible = Global.current_pausestate == Global.PauseState.PAUSED and open
-	
+	$MapFull.visible = fullmap
+	$MapFull.frame = selected_cell.x + selected_cell.y * 4
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
