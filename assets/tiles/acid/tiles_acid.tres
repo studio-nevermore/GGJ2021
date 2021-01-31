@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=65 format=2]
+[gd_resource type="TileSet" load_steps=67 format=2]
 
 [ext_resource path="res://assets/tiles/acid/tileset_acid.png" type="Texture" id=1]
 [ext_resource path="res://assets/tiles/acid/animacid/tileacid_top.tres" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/tiles/acid/animacid/tileacid_mid.tres" type="Texture" id=5]
 [ext_resource path="res://assets/tiles/acid/animacid/tileacid_BGfog.tres" type="Texture" id=6]
 [ext_resource path="res://assets/tiles/acid/animacid/tileacid_fog.tres" type="Texture" id=7]
+[ext_resource path="res://assets/tiles/acid/acidfall.tres" type="Texture" id=8]
+[ext_resource path="res://assets/tiles/acid/acidfallsplash.tres" type="Texture" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 40, 16, 8, 16, 8, 8, 40, 8 )
@@ -872,3 +874,31 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 18/shape_one_way_margin = 0.0
 18/shapes = [  ]
 18/z_index = 0
+19/name = "acidfall.tres 19"
+19/texture = ExtResource( 8 )
+19/tex_offset = Vector2( 0, 0 )
+19/modulate = Color( 1, 1, 1, 1 )
+19/region = Rect2( 40, 0, 24, 96 )
+19/tile_mode = 0
+19/occluder_offset = Vector2( 0, 0 )
+19/navigation_offset = Vector2( 0, 0 )
+19/shape_offset = Vector2( 0, 0 )
+19/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+19/shape_one_way = false
+19/shape_one_way_margin = 0.0
+19/shapes = [  ]
+19/z_index = 0
+20/name = "acidfallsplash.tres 20"
+20/texture = ExtResource( 9 )
+20/tex_offset = Vector2( 0, 0 )
+20/modulate = Color( 1, 1, 1, 1 )
+20/region = Rect2( 32, 56, 40, 40 )
+20/tile_mode = 0
+20/occluder_offset = Vector2( 0, 0 )
+20/navigation_offset = Vector2( 0, 0 )
+20/shape_offset = Vector2( 0, 0 )
+20/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+20/shape_one_way = false
+20/shape_one_way_margin = 0.0
+20/shapes = [  ]
+20/z_index = 0
