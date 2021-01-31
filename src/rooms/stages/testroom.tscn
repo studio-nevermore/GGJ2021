@@ -2,7 +2,6 @@
 
 [ext_resource path="res://src/rooms/RoomControl.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/cars/tiles_cars.tres" type="TileSet" id=2]
-[ext_resource path="res://src/entities/props/breakable_object.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/parts/RoomBoundary.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/entities/player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/parts/BoundaryEntrance.tscn" type="PackedScene" id=6]
@@ -18,6 +17,7 @@
 [ext_resource path="res://assets/tiles/scaf/tileset_autotile_scaffbg.tres" type="TileSet" id=16]
 [ext_resource path="res://assets/tiles/scaf/tileset_autotile_scaff.tres" type="TileSet" id=17]
 [ext_resource path="res://assets/tiles/admn/tileset_autotile_admn.tres" type="TileSet" id=18]
+[ext_resource path="res://src/entities/props/item_pickup.tscn" type="PackedScene" id=19]
 
 [node name="Room" type="Node2D"]
 
@@ -157,5 +157,5 @@ cell_size = Vector2( 8, 8 )
 format = 1
 tile_data = PoolIntArray( 262162, 0, 1, 262163, 0, 2, 262164, 0, 2, 262165, 0, 2, 262166, 0, 6, 262167, 0, 196611, 327698, 0, 131073, 327699, 0, 65543, 327700, 0, 65538, 327701, 0, 65538, 327702, 0, 65539, 393235, 0, 131073, 393236, 0, 131074, 393237, 0, 131074, 393238, 0, 131075 )
 
-[node name="BreakWall" parent="." instance=ExtResource( 3 )]
-position = Vector2( 42.3278, 104.239 )
+[node name="ItemPickup" parent="." instance=ExtResource( 19 )]
+position = Vector2( 158.462, 87.1826 )

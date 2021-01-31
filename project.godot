@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/parts/GlitchScreen.gd"
 }, {
+"base": "Area2D",
+"class": "ItemPickup",
+"language": "GDScript",
+"path": "res://src/entities/props/item_pickup.gd"
+}, {
 "base": "Sprite",
 "class": "Map",
 "language": "GDScript",
@@ -144,6 +149,7 @@ _global_script_class_icons={
 "ExplodeEffect": "",
 "GUI": "",
 "GlitchScreen": "",
+"ItemPickup": "",
 "Map": "",
 "Menu": "",
 "Movement": "",
