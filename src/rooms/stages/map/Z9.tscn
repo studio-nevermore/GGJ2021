@@ -1,0 +1,158 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://src/rooms/RoomControl.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/parts/BoundaryEntrance.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/entities/player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/parts/RoomBoundary.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/entities/props/breakable_object.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/tiles/cars/tiles_cars.tres" type="TileSet" id=6]
+[ext_resource path="res://assets/tiles/acid/tileset_autotile_acid.tres" type="TileSet" id=7]
+[ext_resource path="res://assets/tiles/cars/tileset_autotile_carsbg.tres" type="TileSet" id=8]
+[ext_resource path="res://assets/tiles/cars/tileset_autotile_cars.tres" type="TileSet" id=9]
+[ext_resource path="res://assets/tiles/acid/tileset_autotile_acidbg.tres" type="TileSet" id=10]
+[ext_resource path="res://assets/bg/bg_1.png" type="Texture" id=11]
+[ext_resource path="res://assets/tiles/scaf/tileset_autotile_scaff.tres" type="TileSet" id=12]
+[ext_resource path="res://assets/tiles/scaf/tiles_scaf.tres" type="TileSet" id=13]
+[ext_resource path="res://assets/tiles/admn/tileset_autotile_admn.tres" type="TileSet" id=14]
+[ext_resource path="res://assets/tiles/scaf/tileset_autotile_scaffbg.tres" type="TileSet" id=15]
+[ext_resource path="res://assets/tiles/admn/tiles_admn.tres" type="TileSet" id=16]
+[ext_resource path="res://assets/tiles/admn/tileset_autotile_admnbg.tres" type="TileSet" id=17]
+[ext_resource path="res://assets/tiles/acid/tiles_acid.tres" type="TileSet" id=18]
+
+[node name="Room" type="Node2D"]
+
+[node name="RoomControl" parent="." instance=ExtResource( 1 )]
+has_player = true
+map_cell = Vector2( 1, 0 )
+scene_path = "stages/testroom"
+
+[node name="Background" type="Sprite" parent="."]
+
+[node name="bg_1" type="Sprite" parent="Background"]
+position = Vector2( 120, 68 )
+texture = ExtResource( 11 )
+
+[node name="Boundaries" type="Node2D" parent="."]
+
+[node name="RoomBoundary" parent="Boundaries" instance=ExtResource( 4 )]
+connected_rooms = {
+"Down": "",
+"Left": "",
+"Right": "",
+"Up": ""
+}
+
+[node name="BoundaryEntranceLeft" parent="Boundaries" instance=ExtResource( 2 )]
+position = Vector2( 14, 77 )
+
+[node name="BoundaryEntranceUp" parent="Boundaries" instance=ExtResource( 2 )]
+position = Vector2( 120, 28.5632 )
+side = 1
+
+[node name="BoundaryEntranceRight" parent="Boundaries" instance=ExtResource( 2 )]
+position = Vector2( 224.354, 77 )
+scale = Vector2( -1, 1 )
+side = 4
+
+[node name="BoundaryEntranceDown" parent="Boundaries" instance=ExtResource( 2 )]
+position = Vector2( 120, 120 )
+side = 1
+
+[node name="TilesAUTO_BG" type="Node2D" parent="."]
+
+[node name="Autotile_CarsBG" type="TileMap" parent="TilesAUTO_BG"]
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="Autotile_AcidBG" type="TileMap" parent="TilesAUTO_BG"]
+tile_set = ExtResource( 10 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="Autotile_AdmnBG" type="TileMap" parent="TilesAUTO_BG"]
+tile_set = ExtResource( 17 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="Autotile_ScafBG" type="TileMap" parent="TilesAUTO_BG"]
+tile_set = ExtResource( 15 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="Tiles_BG" type="Node2D" parent="."]
+
+[node name="tile_CarsBG" type="TileMap" parent="Tiles_BG"]
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 8, 8 )
+format = 1
+tile_data = PoolIntArray( 1048572, 3, 0, 1048573, 3, 0, 1048574, 3, 0, 1048575, 3, 0, 983070, 3, 0, 983071, 3, 0, 983072, 3, 0, 983073, 3, 0, 1114108, 3, 0, 1114109, 3, 0, 1114110, 3, 0, 1114111, 3, 0, 1048606, 3, 0, 1048607, 3, 0, 1048608, 3, 0, 1048609, 3, 0, 1179644, 3, 0, 1179645, 3, 0, 1179646, 3, 0, 1179647, 3, 0, 1114142, 3, 0, 1114143, 3, 0, 1114144, 3, 0, 1114145, 3, 0, 1245180, 3, 0, 1245181, 3, 0, 1245182, 3, 0, 1245183, 3, 0, 1179678, 3, 0, 1179679, 3, 0, 1179680, 3, 0, 1179681, 3, 0 )
+
+[node name="tile_AcidBG" type="TileMap" parent="Tiles_BG"]
+tile_set = ExtResource( 18 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="tile_AdmnBG" type="TileMap" parent="Tiles_BG"]
+tile_set = ExtResource( 16 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="tile_ScafBG" type="TileMap" parent="Tiles_BG"]
+tile_set = ExtResource( 13 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 120, 90.3015 )
+
+[node name="Tiles_FG" type="Node2D" parent="."]
+
+[node name="tile_CarsFG" type="TileMap" parent="Tiles_FG"]
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="tile_AcidFG" type="TileMap" parent="Tiles_FG"]
+tile_set = ExtResource( 18 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="tile_AdmnFG" type="TileMap" parent="Tiles_FG"]
+tile_set = ExtResource( 16 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="tile_ScafFG" type="TileMap" parent="Tiles_FG"]
+tile_set = ExtResource( 13 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="TilesAUTO_FG" type="Node2D" parent="."]
+
+[node name="Autotile_Cars" type="TileMap" parent="TilesAUTO_FG"]
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 8, 8 )
+format = 1
+tile_data = PoolIntArray( 917512, 4, 1, 917513, 4, 1, 917514, 4, 1, 917515, 4, 1, 917517, 3, 0, 917518, 3, 0, 917519, 3, 0, 917520, 3, 0, 983040, 2, 1, 983041, 2, 1, 983042, 2, 1, 983043, 2, 1, 983044, 2, 0, 983045, 2, 0, 983046, 2, 0, 983047, 2, 1, 983048, 4, 65536, 983049, 4, 65537, 983050, 4, 65537, 983051, 4, 65538, 983052, 2, 1, 983053, 2, 1, 983054, 2, 1, 983055, 2, 1, 983056, 2, 1, 983057, 2, 1, 983058, 2, 1, 983059, 2, 1, 983060, 2, 1, 983061, 2, 1, 983062, 2, 1, 983063, 2, 1, 983064, 2, 1, 983065, 2, 1, 983066, 2, 1, 983067, 2, 1, 983068, 2, 1, 983069, 2, 1, 1048576, 2, 65537, 1048577, 2, 65537, 1048578, 2, 65537, 1048579, 2, 65537, 1048580, 2, 65537, 1048581, 2, 65537, 1048582, 2, 65537, 1048583, 2, 65537, 1048584, 4, 131072, 1048585, 4, 131073, 1048586, 4, 131073, 1048587, 4, 131074, 1048588, 2, 65537, 1048589, 2, 65537, 1048590, 2, 65537, 1048591, 2, 65537, 1048592, 2, 65537, 1048593, 2, 65537, 1048594, 2, 65537, 1048595, 2, 65537, 1048596, 2, 65537, 1048597, 2, 65537, 1048598, 2, 65537, 1048599, 2, 65537, 1048600, 2, 65537, 1048601, 2, 65537, 1048602, 2, 65537, 1048603, 2, 65537, 1048604, 2, 65537, 1048605, 2, 65537, 1114112, 2, 65537, 1114113, 2, 65537, 1114114, 2, 65537, 1114115, 2, 65537, 1114116, 2, 65537, 1114117, 2, 65537, 1114118, 2, 65537, 1114119, 2, 65537, 1114120, 4, 262144, 1114121, 4, 262145, 1114122, 4, 262145, 1114123, 4, 262146, 1114124, 2, 65537, 1114125, 2, 65537, 1114126, 2, 65537, 1114127, 2, 65537, 1114128, 2, 65537, 1114129, 2, 65537, 1114130, 2, 65537, 1114131, 2, 65537, 1114132, 2, 65537, 1114133, 2, 65537, 1114134, 2, 65537, 1114135, 2, 65537, 1114136, 2, 65537, 1114137, 2, 65537, 1114138, 2, 65537, 1114139, 2, 65537, 1114140, 2, 65537, 1114141, 2, 65537, 1179648, 2, 65537, 1179649, 2, 65537, 1179650, 2, 65537, 1179651, 2, 65537, 1179652, 2, 65537, 1179653, 2, 65537, 1179654, 2, 65537, 1179655, 2, 65537, 1179656, 2, 65537, 1179657, 2, 65537, 1179658, 2, 65537, 1179659, 2, 65537, 1179660, 2, 65537, 1179661, 2, 65537, 1179662, 2, 65537, 1179663, 2, 65537, 1179664, 2, 65537, 1179665, 2, 65537, 1179666, 2, 65537, 1179667, 2, 65537, 1179668, 2, 65537, 1179669, 2, 65537, 1179670, 2, 65537, 1179671, 2, 65537, 1179672, 2, 65537, 1179673, 2, 65537, 1179674, 2, 65537, 1179675, 2, 65537, 1179676, 2, 65537, 1179677, 2, 65537 )
+
+[node name="Autotile_Acid" type="TileMap" parent="TilesAUTO_FG"]
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 8, 8 )
+format = 1
+tile_data = PoolIntArray( 851965, 0, 196612 )
+
+[node name="Autotile_Admn" type="TileMap" parent="TilesAUTO_FG"]
+tile_set = ExtResource( 14 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="Autotile_Scaf" type="TileMap" parent="TilesAUTO_FG"]
+tile_set = ExtResource( 12 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="BreakWall" parent="." instance=ExtResource( 5 )]
+position = Vector2( 349.566, 223.033 )

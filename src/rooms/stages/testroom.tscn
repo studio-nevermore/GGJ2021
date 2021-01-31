@@ -38,7 +38,7 @@ texture = ExtResource( 11 )
 connected_rooms = {
 "Down": "",
 "Left": "testroom2",
-"Right": "",
+"Right": "D1",
 "Up": ""
 }
 
@@ -102,6 +102,7 @@ format = 1
 tile_data = PoolIntArray( -65518, 0, 4, -65513, 0, 4, 18, 0, 65540, 23, 0, 65540, 65554, 0, 65540, 65559, 0, 65540, 131090, 0, 65540, 131095, 0, 65540, 196626, 0, 65540, 196631, 0, 65540, 262162, 0, 131076, 262167, 0, 131076 )
 
 [node name="Entities" type="Node2D" parent="."]
+position = Vector2( 184.201, -47.3761 )
 
 [node name="Player" parent="Entities" instance=ExtResource( 5 )]
 position = Vector2( 16, 120 )
