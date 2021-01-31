@@ -3,6 +3,7 @@ extends Area2D
 var activated := false
 var falling := false
 var spd := 10.0
+var item_spd := 40
 
 func _process(delta):
 	var p = Global.get_player()
@@ -14,7 +15,9 @@ func _process(delta):
 		event_stuff()
 	if falling:
 		$AnimatedSprite.position.y += spd * delta
+		$Item.position.y += item_spd * delta
 		spd += 10
+		item_spd += 15
 
 func event_stuff():
 	$AnimatedSprite.visible = true
