@@ -38,7 +38,7 @@ texture = ExtResource( 11 )
 connected_rooms = {
 "Down": "",
 "Left": "testroom2",
-"Right": "D1",
+"Right": "map/C3",
 "Up": ""
 }
 
