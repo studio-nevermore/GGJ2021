@@ -106,26 +106,26 @@ script = ExtResource( 12 )
 [node name="IconA" type="Sprite" parent="GameContainer/GameView/GUI/HUD"]
 position = Vector2( 162, 11 )
 texture = ExtResource( 16 )
-vframes = 4
 hframes = 2
+vframes = 4
 
 [node name="IconS" type="Sprite" parent="GameContainer/GameView/GUI/HUD"]
 position = Vector2( 174, 29 )
 texture = ExtResource( 16 )
-vframes = 4
 hframes = 2
+vframes = 4
 
 [node name="IconZ" type="Sprite" parent="GameContainer/GameView/GUI/HUD"]
 position = Vector2( 202, 11 )
 texture = ExtResource( 16 )
-vframes = 4
 hframes = 2
+vframes = 4
 
 [node name="IconX" type="Sprite" parent="GameContainer/GameView/GUI/HUD"]
 position = Vector2( 214, 29 )
 texture = ExtResource( 16 )
-vframes = 4
 hframes = 2
+vframes = 4
 
 [node name="Menu" type="ColorRect" parent="GameContainer/GameView/GUI"]
 color = Color( 0, 0, 0, 1 )
@@ -154,8 +154,8 @@ material = SubResource( 3 )
 position = Vector2( 31, 28 )
 texture = ExtResource( 6 )
 centered = false
-vframes = 4
 hframes = 4
+vframes = 4
 
 [node name="CellName" type="Label" parent="GameContainer/GameView/GUI/Map"]
 modulate = Color( 0.333333, 0.278431, 0.247059, 1 )
@@ -176,8 +176,8 @@ centered = false
 [node name="MapFull" type="Sprite" parent="GameContainer/GameView/GUI/Map"]
 position = Vector2( 120, 67.5 )
 texture = ExtResource( 17 )
-vframes = 4
 hframes = 4
+vframes = 4
 
 [node name="ScreenFade" type="ColorRect" parent="GameContainer/GameView/GUI"]
 visible = false
@@ -211,4 +211,5 @@ autoplay = true
 bus = "Music"
 
 [node name="TitleScreen" parent="GameContainer/GameView" instance=ExtResource( 1 )]
+
 [connection signal="animation_finished" from="GameContainer/GameView/GUI/Map/AnimationPlayer" to="GameContainer/GameView/GUI/Map" method="_on_AnimationPlayer_animation_finished"]
