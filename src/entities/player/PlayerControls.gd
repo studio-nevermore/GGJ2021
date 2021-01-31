@@ -113,8 +113,10 @@ func _physics_process(_delta):
 					mag = min(Input.get_action_strength("game_down") / max_sens, 1.0)
 				
 				var coll = space_state.intersect_ray(get_parent().global_position, get_parent().global_position + dir * 200, [get_parent().get_node("MagnetTracker")], get_parent().get_node("MagnetTracker").collision_mask)
+				print(coll)
 				if coll:
-					var solidcoll = space_state.intersect_ray(get_parent().global_position, coll["collider"].global_position, [get_parent(), coll["collider"]])
+					var solidcoll = space_state.intersect_ray(get_parent().global_position, coll["position"], [get_parent(), coll["collider"]])
+					print(solidcoll)
 					if !solidcoll:
 						magnetized = true
 						magnetized_to = coll["collider"]
