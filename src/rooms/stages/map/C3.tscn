@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/tiles/cars/tileset_autotile_carsbg.tres" type="TileSet" id=8]
 [ext_resource path="res://assets/tiles/cars/tileset_autotile_cars.tres" type="TileSet" id=9]
 [ext_resource path="res://assets/tiles/acid/tileset_autotile_acidbg.tres" type="TileSet" id=10]
-[ext_resource path="res://assets/bg/bg_1.png" type="Texture" id=11]
+[ext_resource path="res://assets/bg/bg_2.png" type="Texture" id=11]
 [ext_resource path="res://assets/tiles/scaf/tileset_autotile_scaff.tres" type="TileSet" id=12]
 [ext_resource path="res://assets/tiles/scaf/tiles_scaf.tres" type="TileSet" id=13]
 [ext_resource path="res://assets/tiles/admn/tileset_autotile_admn.tres" type="TileSet" id=14]
@@ -43,19 +43,19 @@ connected_rooms = {
 }
 
 [node name="BoundaryEntranceLeft" parent="Boundaries" instance=ExtResource( 2 )]
-position = Vector2( 9.66177, 29.6132 )
+position = Vector2( 9.66177, 51.8475 )
 
 [node name="BoundaryEntranceUp" parent="Boundaries" instance=ExtResource( 2 )]
-position = Vector2( 120, 28.5632 )
+position = Vector2( 164.893, 24.6983 )
 side = 1
 
 [node name="BoundaryEntranceRight" parent="Boundaries" instance=ExtResource( 2 )]
-position = Vector2( 224.354, 77 )
+position = Vector2( 228.516, 51.8475 )
 scale = Vector2( -1, 1 )
 side = 4
 
 [node name="BoundaryEntranceDown" parent="Boundaries" instance=ExtResource( 2 )]
-position = Vector2( 120, 51.8475 )
+position = Vector2( 118, 51.8475 )
 side = 2
 
 [node name="TilesAUTO_BG" type="Node2D" parent="."]
