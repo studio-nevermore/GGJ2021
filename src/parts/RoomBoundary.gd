@@ -111,3 +111,6 @@ func DownExit(body):
 		move.movement_state = Movement.State.JUMPING
 		move.bypass_physics = true
 		ExitRoom(Global.Dirs.DOWN)
+
+func _on_RoomBoundary_body_entered(a):
+	pass
