@@ -40,7 +40,7 @@ func _ready():
 			if Stats.game_data[Stats.Data.upgrade_projectile] == 1:
 				queue_free()
 		Items.paper:
-			if Stats.game_data[Stats.Data.upgrade_paper] == 1:
+			if Stats.game_data[Stats.Data.upgrade_map] == 1:
 				queue_free()
 		Items.magnet:
 			if Stats.game_data[Stats.Data.upgrade_magnet] == 1:

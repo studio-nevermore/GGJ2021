@@ -26,7 +26,7 @@ func _on_BoundaryExit_body_entered(body):
 	
 	Global.current_boundary_entrance = entrance_index
 
-	if Stats.game_data[Stats.Data.glitched]:
+	if Stats.game_data[Stats.Data.glitched] and exit_room_glitched != "":
 		exit_room = exit_room_glitched
 	if exit_room != "":
 		Global.current_room_control.room_change(exit_room)

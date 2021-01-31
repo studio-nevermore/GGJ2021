@@ -197,6 +197,7 @@ entrance_index = 1
 position = Vector2( -12.3473, 109.408 )
 scale = Vector2( 1, 5.92 )
 exit_room = "map/B1"
+exit_room_glitched = "map/C1"
 entrance_index = 2
 
 [node name="BoundaryExit2" parent="Boundaries" instance=ExtResource( 4 )]
@@ -220,5 +221,4 @@ position = Vector2( 88, 56 )
 
 [node name="BreakWall3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 240, 32 )
-
 [connection signal="body_entered" from="Entities/Area2D" to="Entities/Area2D" method="_on_Area2D_body_entered"]
