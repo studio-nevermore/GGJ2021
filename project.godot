@@ -188,7 +188,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Legacy"
+config/name="GGJ2021"
 run/main_scene="res://src/rooms/MainScene.tscn"
 config/use_custom_user_dir=true
 boot_splash/image="res://splash.png"

@@ -45,7 +45,7 @@ position = Vector2( 224.787, 79.3015 )
 entrance_index = 1
 
 [node name="BoundaryEntranceRight" parent="Boundaries" instance=ExtResource( 2 )]
-position = Vector2( 224.354, 112 )
+position = Vector2( 224.787, 79.3015 )
 scale = Vector2( -1, 1 )
 entrance_index = 2
 
