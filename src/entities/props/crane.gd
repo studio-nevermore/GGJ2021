@@ -46,8 +46,10 @@ func event_stuff():
 	
 	Stats.game_data[Stats.Data.glitched] = true
 	
-	# Change this to go to the proper room when stuff is set up
-	Global.current_room_control.room_restart()
+	Global.start_from_save = true
+	Stats.game_data[Stats.Data.checkpoint] = 5
+	Global.current_boundary_entrance = 5
+	Global.current_room_control.room_change("map/B2")
 
 
 func _on_PulseTimer_timeout():

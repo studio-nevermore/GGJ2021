@@ -193,6 +193,11 @@ position = Vector2( 220, 48 )
 scale = Vector2( -1, 1 )
 entrance_index = 1
 
+[node name="BoundaryEntranceUp2" parent="Boundaries" instance=ExtResource( 2 )]
+position = Vector2( 200, 88 )
+scale = Vector2( -1, 1 )
+entrance_index = 5
+
 [node name="BoundaryExit" parent="Boundaries" instance=ExtResource( 4 )]
 position = Vector2( -12.3473, 109.408 )
 scale = Vector2( 1, 5.92 )
