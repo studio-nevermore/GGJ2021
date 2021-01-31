@@ -28,6 +28,17 @@ has_player = true
 map_cell = Vector2( 2, 1 )
 scene_path = "map/B3"
 
+[node name="Tiles_MAGNET" type="Node2D" parent="."]
+z_index = 4096
+
+[node name="tile_MAG" type="TileMap" parent="Tiles_MAGNET"]
+tile_set = ExtResource( 20 )
+cell_size = Vector2( 8, 8 )
+collision_layer = 129
+format = 1
+tile_data = PoolIntArray( 458765, 7, 0, 851979, 7, 0, 851981, 7, 0, 851983, 7, 0 )
+script = ExtResource( 19 )
+
 [node name="Background" type="Sprite" parent="."]
 
 [node name="bg_1" type="Sprite" parent="Background"]
@@ -191,14 +202,3 @@ tile_data = PoolIntArray( -1, 0, 1, -65536, 0, 2, -65535, 0, 3, 65535, 0, 65537,
 
 [node name="BreakWall" parent="." instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-
-[node name="Tiles_MAGNET" type="Node2D" parent="."]
-z_index = 4096
-
-[node name="tile_MAG" type="TileMap" parent="Tiles_MAGNET"]
-tile_set = ExtResource( 20 )
-cell_size = Vector2( 8, 8 )
-collision_layer = 129
-format = 1
-tile_data = PoolIntArray( 458765, 7, 0, 851979, 7, 0, 851981, 7, 0, 851983, 7, 0 )
-script = ExtResource( 19 )

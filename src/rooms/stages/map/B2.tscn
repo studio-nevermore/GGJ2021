@@ -28,6 +28,15 @@ has_player = true
 map_cell = Vector2( 1, 1 )
 scene_path = "map/B2"
 
+[node name="Tiles_MAGNET" type="Node2D" parent="."]
+
+[node name="tile_ScafMAG" type="TileMap" parent="Tiles_MAGNET"]
+tile_set = ExtResource( 13 )
+cell_size = Vector2( 8, 8 )
+collision_layer = 129
+format = 1
+tile_data = PoolIntArray( 65537, 8, 262145, 65538, 8, 262145, 131080, 8, 262145, 131089, 8, 262145, 196616, 8, 262145, 196625, 8, 262145, 393228, 7, 0 )
+
 [node name="Tiles_MAGNET2" type="Node2D" parent="."]
 z_index = 4096
 
@@ -98,15 +107,6 @@ tile_data = PoolIntArray( 65542, 11, 131073, 65543, 11, 131073, 131078, 11, 1966
 [node name="Player" parent="Entities" instance=ExtResource( 3 )]
 position = Vector2( 120, 90.3015 )
 
-[node name="Tiles_MAGNET" type="Node2D" parent="."]
-
-[node name="tile_ScafMAG" type="TileMap" parent="Tiles_MAGNET"]
-tile_set = ExtResource( 13 )
-cell_size = Vector2( 8, 8 )
-collision_layer = 129
-format = 1
-tile_data = PoolIntArray( 65537, 8, 262145, 65538, 8, 262145, 131080, 8, 262145, 131089, 8, 262145, 196616, 8, 262145, 196625, 8, 262145, 393228, 7, 0 )
-
 [node name="Tiles_FG" type="Node2D" parent="."]
 
 [node name="tile_CarsFG" type="TileMap" parent="Tiles_FG"]
@@ -128,6 +128,7 @@ format = 1
 tile_set = ExtResource( 13 )
 cell_size = Vector2( 8, 8 )
 format = 1
+tile_data = PoolIntArray( 65537, 8, 262145, 65538, 8, 262145, 131080, 8, 262145, 131089, 8, 262145, 196616, 8, 262145, 196625, 8, 262145, 393228, 7, 0 )
 
 [node name="TilesAUTO_FG" type="Node2D" parent="."]
 
