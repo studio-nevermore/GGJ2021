@@ -23,7 +23,7 @@
 
 [node name="RoomControl" parent="." instance=ExtResource( 1 )]
 has_player = true
-map_cell = Vector2( 1, 0 )
+map_cell = Vector2( 2, 2 )
 scene_path = "map/C3"
 
 [node name="Background" type="Sprite" parent="."]
