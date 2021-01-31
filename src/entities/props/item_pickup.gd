@@ -66,7 +66,7 @@ func collect_item():
 		Items.projectile:
 			Stats.game_data[Stats.Data.upgrade_projectile] = 1
 		Items.paper:
-			Stats.game_data[Stats.Data.upgrade_paper] = 1
+			Stats.game_data[Stats.Data.upgrade_map] = 1
 		Items.magnet:
 			Stats.game_data[Stats.Data.upgrade_magnet] = 1
 		
