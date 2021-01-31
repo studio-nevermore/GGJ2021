@@ -29,7 +29,7 @@ func _process(delta):
 		$FPSBack.visible = $FPS.visible
 		$FPSBack.text = $FPS.text
 
-func fade_screen(out = true):
+func fade_screen(out = true, spd = 1):
 	var fadenode = $ScreenFade/AnimationPlayer
 	var current_pos = -1
 	
@@ -46,6 +46,8 @@ func fade_screen(out = true):
 		else:
 			fadenode.play("unfade")
 			
+		fadenode.playback_speed = spd
+		
 		if current_pos >= 0:
 			fadenode.seek(current_pos, true)
 			

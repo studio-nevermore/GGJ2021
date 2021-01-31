@@ -24,7 +24,7 @@
 [node name="RoomControl" parent="." instance=ExtResource( 1 )]
 has_player = true
 map_cell = Vector2( 1, 0 )
-scene_path = "stages/testroom"
+scene_path = "map/C3"
 
 [node name="Background" type="Sprite" parent="."]
 
@@ -47,6 +47,10 @@ entrance_index = 1
 position = Vector2( 228.516, 56 )
 scale = Vector2( -1, 1 )
 entrance_index = 2
+
+[node name="BoundaryEntranceStart" parent="Boundaries" instance=ExtResource( 2 )]
+position = Vector2( 25.516, 120 )
+entrance_index = 5
 
 [node name="BoundaryExit" parent="Boundaries" instance=ExtResource( 4 )]
 position = Vector2( -11, 30 )

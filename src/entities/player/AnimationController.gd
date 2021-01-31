@@ -66,7 +66,7 @@ func set_blink():
 				off = 0
 		"jump":
 			off = -1
-		"hurt":
+		"hurt", "wakeup", "sleep":
 			$Blink.visible = false
 	$Blink.offset.y = off
 

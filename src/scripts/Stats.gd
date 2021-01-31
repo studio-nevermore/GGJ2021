@@ -22,9 +22,12 @@ enum Data {
 	upgrade_swim,
 	upgrade_magnet,
 	
+	glitched,
+	
 	map_cells,
 	
-	flags = 50
+	glitch_seed = 50,
+	flags = 100
 }
 
 enum Flags {
@@ -33,7 +36,7 @@ enum Flags {
 
 signal screen_set()
 
-const data_version = 1
+const data_version = 2
 
 var game_data := []
 var game_settings := []
@@ -41,7 +44,22 @@ var game_settings := []
 var player_direction = Global.HDirs.RIGHT
 
 var rooms = [
-		"/stages/testroom"
+		"map/A1",
+		"map/A2",
+		"map/A3",
+		"map/A4",
+		"map/B1",
+		"map/B2",
+		"map/B3",
+		"map/B4",
+		"map/C1",
+		"map/C2",
+		"map/C3",
+		"map/C4",
+		"map/D1",
+		"map/D2",
+		"map/D3",
+		"map/D4"
 	]
 var room_prefix = "src/rooms/stages/"
 var room_suffix = ".tscn"
@@ -62,8 +80,8 @@ func initialize_data():
 		game_data.append(0)
 		
 	game_data[Data.version] = data_version
-	game_data[Data.room] = 0
-	game_data[Data.checkpoint] = 0
+	game_data[Data.room] = 10
+	game_data[Data.checkpoint] = 5
 	
 func initialize_settings():
 	game_settings.clear()

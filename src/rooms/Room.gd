@@ -5,7 +5,7 @@ export(bool) var has_player = false
 export(Vector2) var map_cell = Vector2(-1, -1)
 export(String) var scene_path = ""
 
-var dir = "src/rooms/"
+var dir = "src/rooms/stages/"
 var ext = ".tscn"
 var music_started := false
 var music_fading := -1.0
@@ -15,7 +15,10 @@ var stage_music := ["Music"]
 func _ready():
 	Global.gui.connect("fade_finished", self, "fadetimer_over")
 	if Global.gui.get_node("ScreenFade").modulate.a == 1:
-		Global.gui.fade_screen(false)
+		if scene_path == "title":
+			Global.gui.fade_screen(false, 0.25)
+		else:
+			Global.gui.fade_screen(false)
 	else:
 		fadetimer_over(false)
 	
@@ -37,12 +40,22 @@ func _ready():
 			Stats.game_data[Stats.Data.checkpoint] = Global.current_boundary_entrance
 		else:
 			Global.current_boundary_entrance = Stats.game_data[Stats.Data.checkpoint]
+			
+		var ind = Stats.rooms.find(scene_path)
+		if ind != -1:
+			Stats.game_data[Stats.Data.room] = ind
+			
+		DataManager.data_save()
 	else:
 		Global.current_boundary_entrance = -1
 	
+	
 	reready()
 	
-	_on_Timer_timeout()
+	if !Global.start_from_save:
+		_on_Timer_timeout()
+	else:
+		$Timer.start()
 
 func reready():
 	Global.gui.global_position = Vector2.ZERO
@@ -71,7 +84,7 @@ func room_change(path, is_stage = true):
 	Global.set_pause_state(Global.PauseState.EVENT)
 	if has_player:
 		Global.get_player().get_node("PlayerControls").fade_buffer = true
-	if !is_stage:
+	if !is_stage or !Stats.game_data[Stats.Data.glitched]:
 		fadeout()
 		yield(Global.gui, "fade_finished")
 	else:
@@ -81,7 +94,11 @@ func room_change(path, is_stage = true):
 		yield($GlitchScreen, "glitch_over")
 	room_end()
 	
-	SceneManager.load_scene(path)
+	if Stats.game_data[Stats.Data.glitched] and path != "title":
+		# Room shuffling stuff, pick actual room based on path and stats room index
+		pass
+	
+	SceneManager.load_scene("stages/" + path)
 	
 func game_end():
 	fadeout()
@@ -93,11 +110,12 @@ func room_end():
 	if Global.current_room == get_parent():
 		Global.current_room = null
 		Global.current_room_control = null
-		
-	DataManager.data_save()
 
 func fadeout():
-	Global.gui.fade_screen()
+	if scene_path == "title":
+		Global.gui.fade_screen(true, 0.25)
+	else:
+		Global.gui.fade_screen(true)
 
 func play_music(trackname):
 	if trackname == "":
@@ -137,6 +155,11 @@ func _on_Timer_timeout():
 	
 	if map_cell != Vector2(-1, -1):
 		move_player()
+		
+		if has_player and Global.start_from_save:
+			Global.get_player().get_node("EventHandler").wake_up()
+			
+	Global.start_from_save = false
 
 func move_player():
 	var p = Global.get_player()

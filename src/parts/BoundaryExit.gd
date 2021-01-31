@@ -26,6 +26,6 @@ func _on_BoundaryExit_body_entered(body):
 	Global.current_boundary_entrance = entrance_index
 
 	if exit_room != "":
-		Global.current_room_control.room_change("stages/" + exit_room)
+		Global.current_room_control.room_change(exit_room)
 	else:
 		Global.current_room_control.room_restart()

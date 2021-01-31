@@ -24,6 +24,26 @@ func unfreeze_completely():
 	parent.get_node("PlayerControls").controls_disabled = false
 	parent.get_node("Animations").stop = false
 
+func wake_up():
+	Global.set_pause_state(Global.PauseState.EVENT)
+	freeze_movement()
+	var panims = parent.get_node("Animations")
+	panims.stop = true
+	panims.play("sleep")
+	
+	$Timer.start(1)
+	yield($Timer, "timeout")
+	
+	panims.play("wakeup")
+	yield(panims, "animation_finished")
+	
+	$Timer.start(0.3)
+	yield($Timer, "timeout")
+	
+	unfreeze_movement()
+	panims.stop = false
+	Global.set_pause_state(Global.PauseState.NORMAL)
+
 func get_magnetized(body):
 	Global.set_pause_state(Global.PauseState.EVENT)
 	freeze_movement()

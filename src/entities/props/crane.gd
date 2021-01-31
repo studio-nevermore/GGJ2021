@@ -33,5 +33,9 @@ func event_stuff():
 	
 	$Timer.start(4)
 	yield($Timer, "timeout")
+	
+	
+	Stats.game_data[Stats.Data.glitched] = true
+	
 	# Change this to go to the proper room when stuff is set up
 	Global.current_room_control.room_restart()

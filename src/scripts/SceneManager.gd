@@ -13,6 +13,7 @@ func _load_scene_deferred(path: String) -> void:
 			if n.name != "GUI" and n.name != "Music":
 				n.free()
 		var pscene = load(dir + path + ext)
+		print(path)
 		var scene = pscene.instance()
 		game_view.add_child(scene)
 		scene.get_node("RoomControl").reready()
