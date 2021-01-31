@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/rooms/RoomControl.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/parts/BoundaryEntrance.tscn" type="PackedScene" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://assets/tiles/admn/tiles_admn.tres" type="TileSet" id=16]
 [ext_resource path="res://assets/tiles/admn/tileset_autotile_admnbg.tres" type="TileSet" id=17]
 [ext_resource path="res://assets/tiles/acid/tiles_acid.tres" type="TileSet" id=18]
+[ext_resource path="res://src/rooms/stages/invisible.gd" type="Script" id=19]
+[ext_resource path="res://assets/tiles/testtiles.tres" type="TileSet" id=20]
 
 [node name="Room" type="Node2D"]
 
@@ -170,3 +172,14 @@ tile_data = PoolIntArray( -65535, 0, 1, -65534, 0, 3, -65530, 0, 1, -65529, 0, 3
 
 [node name="BreakWall" parent="." instance=ExtResource( 5 )]
 position = Vector2( 349.566, 223.033 )
+
+[node name="Tiles_MAGNET" type="Node2D" parent="."]
+z_index = 4096
+
+[node name="tile_MAG" type="TileMap" parent="Tiles_MAGNET"]
+tile_set = ExtResource( 20 )
+cell_size = Vector2( 8, 8 )
+collision_layer = 129
+format = 1
+tile_data = PoolIntArray( 262147, 7, 0, 393223, 7, 0, 393229, 7, 0, 458768, 6, 0, 458769, 6, 0, 524301, 9, 0, 524303, 9, 0, 524305, 9, 0, 524307, 9, 0, 524309, 6, 0, 589848, 6, 0, 655383, 6, 0, 655384, 6, 0, 655385, 6, 0, 720909, 6, 0, 720910, 6, 0, 720911, 6, 0, 720912, 6, 0, 720913, 6, 0, 720914, 6, 0, 720915, 6, 0, 720916, 6, 0, 720917, 6, 0, 720918, 6, 0, 720919, 6, 0, 786441, 6, 0, 851977, 6, 0, 851978, 6, 0 )
+script = ExtResource( 19 )
