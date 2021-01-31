@@ -37,7 +37,7 @@ texture = ExtResource( 11 )
 [node name="BoundaryExit" parent="Boundaries" instance=ExtResource( 3 )]
 position = Vector2( 251, 72 )
 scale = Vector2( 1, 7.48 )
-exit_room = "testroom2"
+exit_room = "map/C3"
 exit_direction = 4
 
 [node name="BoundaryEntrance" parent="Boundaries" instance=ExtResource( 6 )]
