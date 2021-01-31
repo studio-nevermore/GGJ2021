@@ -55,7 +55,6 @@ var _coyote_time_active := true
 
 func _physics_process(delta):
 	Parent = get_parent() # just in case node hierarchy changes for some reason
-	
 	if !bypass_physics:
 		if !freeze_movement and !is_vel_locked():
 			_velocity = _x_velocity(_velocity, delta)
@@ -159,6 +158,7 @@ func _y_velocity(velocity: Vector2, delta: float) -> Vector2:
 		
 		if !state_priority():
 			self.movement_state = State.JUMPING if velocity.y < 0 else State.FALLING
+			
 	return velocity
 	
 func _final_movement(velocity: Vector2, delta: float) -> Vector2:

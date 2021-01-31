@@ -12,17 +12,15 @@ func unfreeze_movement():
 
 func freeze_completely():
 	var pmove = parent.get_node("Movement")
-	if pmove:
-		pmove._velocity = Vector2.ZERO
-		pmove.move_sign = 0
-		pmove.freeze_gravity = true
+	pmove._velocity = Vector2.ZERO
+	pmove.move_sign = 0
+	pmove.freeze_gravity = true
 	parent.get_node("PlayerControls").controls_disabled = true
 	parent.get_node("Animations").stop = true
 	
 func unfreeze_completely():
 	var pmove = parent.get_node("Movement")
-	if pmove:
-		pmove.freeze_gravity = false
+	pmove.freeze_gravity = false
 	parent.get_node("PlayerControls").controls_disabled = false
 	parent.get_node("Animations").stop = false
 
