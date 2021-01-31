@@ -90,6 +90,7 @@ func _physics_process(_delta):
 				
 			var magcoll = space_state.intersect_ray(get_parent().global_position, get_parent().global_position + magnetized_dir * 200, [get_parent().get_node("MagnetTracker")], get_parent().get_node("MagnetTracker").collision_mask)
 			if magnetized:
+				get_parent().get_node("Electricity").visible = true
 				if (!Input.is_action_pressed("game_magnet") or !magcoll):
 					magnetized = false
 					MovementController.freeze_gravity = false
@@ -98,6 +99,8 @@ func _physics_process(_delta):
 					MovementController.bypass_jump = false
 				elif magnetized_dir.y == 0:
 					MovementController._velocity.y = 0
+			else:
+				get_parent().get_node("Electricity").visible = false
 				
 			if Input.is_action_just_released("game_magnet"):
 				magnetized_dir = Vector2.ZERO

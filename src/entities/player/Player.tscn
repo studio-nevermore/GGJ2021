@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/entities/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/components/Movement.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/entities/player.png" type="Texture" id=6]
 [ext_resource path="res://src/resources/PhysicsAttributes.gd" type="Script" id=7]
 [ext_resource path="res://assets/entities/blink.png" type="Texture" id=8]
+[ext_resource path="res://assets/entities/props/electricity_small.png" type="Texture" id=9]
 [ext_resource path="res://src/entities/player/PlayerPhysics.gd" type="Script" id=11]
 [ext_resource path="res://src/entities/components/PlayerMovement.gd" type="Script" id=12]
 [ext_resource path="res://src/entities/components/PlayerEvents.gd" type="Script" id=15]
@@ -76,43 +77,43 @@ region = Rect2( 20, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 20, 24 )
+region = Rect2( 80, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 6 )
-region = Rect2( 20, 0, 20, 24 )
+region = Rect2( 60, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 6 )
-region = Rect2( 40, 0, 20, 24 )
+region = Rect2( 120, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 6 )
-region = Rect2( 40, 0, 20, 24 )
+region = Rect2( 100, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 20, 24 )
+region = Rect2( 100, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 6 )
-region = Rect2( 80, 0, 20, 24 )
+region = Rect2( 40, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 6 )
-region = Rect2( 60, 0, 20, 24 )
+region = Rect2( 0, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 6 )
-region = Rect2( 120, 0, 20, 24 )
+region = Rect2( 40, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 6 )
-region = Rect2( 100, 0, 20, 24 )
+region = Rect2( 0, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 6 )
-region = Rect2( 100, 0, 20, 24 )
+region = Rect2( 20, 0, 20, 24 )
 
 [sub_resource type="SpriteFrames" id=17]
 animations = [ {
@@ -123,32 +124,32 @@ animations = [ {
 }, {
 "frames": [ SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
-"name": "swim",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 9 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 10 ), SubResource( 11 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 12 ), SubResource( 13 ) ],
-"loop": true,
 "name": "hurt",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 15 ), SubResource( 15 ), SubResource( 14 ), SubResource( 15 ), SubResource( 15 ), SubResource( 15 ), SubResource( 15 ), SubResource( 14 ), SubResource( 15 ), SubResource( 15 ), SubResource( 14 ), SubResource( 15 ), SubResource( 14 ), SubResource( 15 ), SubResource( 14 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 9 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 9 ), SubResource( 10 ), SubResource( 10 ), SubResource( 9 ), SubResource( 10 ), SubResource( 9 ), SubResource( 10 ), SubResource( 9 ) ],
 "loop": false,
 "name": "wakeup",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 16 ) ],
+"frames": [ SubResource( 11 ) ],
 "loop": true,
 "name": "sleep",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "swim",
 "speed": 5.0
 } ]
 
@@ -274,6 +275,26 @@ tracks/2/keys = {
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 8, 8 )
 
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 60, 60 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 9 )
+region = Rect2( 60, 0, 60, 60 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 9 )
+region = Rect2( 120, 0, 60, 60 )
+
+[sub_resource type="SpriteFrames" id=28]
+animations = [ {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
 [node name="Player" type="KinematicBody2D" groups=[
 "entity",
 "player",
@@ -326,7 +347,6 @@ use_parent_material = true
 position = Vector2( 0, -12 )
 frames = SubResource( 17 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 5 )
 
@@ -358,6 +378,12 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetTracker"]
 position = Vector2( 0, -6 )
 shape = SubResource( 24 )
+
+[node name="Electricity" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 0, -10 )
+frames = SubResource( 28 )
+playing = true
 [connection signal="facing_changed" from="Movement" to="Animations" method="_on_Movement_facing_changed"]
 [connection signal="movement_state_changed" from="Movement" to="Animations" method="_on_Movement_movement_state_changed"]
 [connection signal="movement_state_changed" from="Movement" to="." method="_on_Movement_movement_state_changed"]
