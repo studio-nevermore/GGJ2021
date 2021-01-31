@@ -36,10 +36,10 @@ texture = ExtResource( 11 )
 
 [node name="RoomBoundary" parent="Boundaries" instance=ExtResource( 4 )]
 connected_rooms = {
-"Down": "map/",
-"Left": "map/A2",
-"Right": "map/",
-"Up": "map/"
+"Down": "map/D3",
+"Left": "map/C2",
+"Right": "map/C4",
+"Up": "map/B3"
 }
 
 [node name="BoundaryEntranceLeft" parent="Boundaries" instance=ExtResource( 2 )]
