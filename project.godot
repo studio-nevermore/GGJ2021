@@ -124,6 +124,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/entities/player/projectile.gd"
 }, {
+"base": "EventHandler",
+"class": "RobotEvents",
+"language": "GDScript",
+"path": "res://src/entities/components/NewrobotEvents.gd"
+}, {
 "base": "Node2D",
 "class": "Room",
 "language": "GDScript",
@@ -173,6 +178,7 @@ _global_script_class_icons={
 "PlayerMovement": "",
 "PlayerPhysics": "",
 "Projectile": "",
+"RobotEvents": "",
 "Room": "",
 "RoomBoundary": "",
 "Slash": "",

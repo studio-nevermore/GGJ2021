@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://src/entities/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/components/Movement.tscn" type="PackedScene" id=2]
@@ -9,12 +9,16 @@
 [ext_resource path="res://src/resources/PhysicsAttributes.gd" type="Script" id=7]
 [ext_resource path="res://assets/entities/blink.png" type="Texture" id=8]
 [ext_resource path="res://assets/entities/props/electricity_small.png" type="Texture" id=9]
+[ext_resource path="res://assets/effects/littledot.png" type="Texture" id=10]
 [ext_resource path="res://src/entities/player/PlayerPhysics.gd" type="Script" id=11]
 [ext_resource path="res://src/entities/components/PlayerMovement.gd" type="Script" id=12]
+[ext_resource path="res://assets/shaders/recolor.tres" type="Shader" id=13]
 [ext_resource path="res://src/entities/components/PlayerEvents.gd" type="Script" id=15]
 
-[sub_resource type="CanvasItemMaterial" id=1]
-light_mode = 1
+[sub_resource type="ShaderMaterial" id=30]
+shader = ExtResource( 13 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/intensity = 0.0
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 7 )
@@ -67,6 +71,10 @@ max_run_speed = 1.5
 COYOTE_TIME = 0.05
 DROPTHROUGH_TIME = 0.3
 
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 6 )
+region = Rect2( 120, 0, 20, 24 )
+
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 20, 24 )
@@ -77,46 +85,51 @@ region = Rect2( 20, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 6 )
-region = Rect2( 80, 0, 20, 24 )
+region = Rect2( 40, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 6 )
-region = Rect2( 60, 0, 20, 24 )
+region = Rect2( 0, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 6 )
-region = Rect2( 120, 0, 20, 24 )
+region = Rect2( 100, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 6 )
-region = Rect2( 100, 0, 20, 24 )
+region = Rect2( 40, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 6 )
-region = Rect2( 100, 0, 20, 24 )
+region = Rect2( 0, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 6 )
-region = Rect2( 40, 0, 20, 24 )
+region = Rect2( 20, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 20, 24 )
+region = Rect2( 80, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 6 )
-region = Rect2( 40, 0, 20, 24 )
+region = Rect2( 60, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 20, 24 )
+region = Rect2( 120, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 6 )
-region = Rect2( 20, 0, 20, 24 )
+region = Rect2( 100, 0, 20, 24 )
 
 [sub_resource type="SpriteFrames" id=17]
 animations = [ {
+"frames": [ SubResource( 29 ) ],
+"loop": true,
+"name": "whatever",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "idle",
@@ -124,33 +137,33 @@ animations = [ {
 }, {
 "frames": [ SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
-"name": "hurt",
-"speed": 8.0
+"name": "walk",
+"speed": 5.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 9 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 9 ), SubResource( 10 ), SubResource( 10 ), SubResource( 9 ), SubResource( 10 ), SubResource( 9 ), SubResource( 10 ), SubResource( 9 ) ],
-"loop": false,
-"name": "wakeup",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 11 ) ],
+"frames": [ SubResource( 9 ) ],
 "loop": true,
 "name": "sleep",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 12 ), SubResource( 13 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 14 ) ],
+"frames": [ SubResource( 10 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 15 ), SubResource( 16 ) ],
+"frames": [ SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "swim",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "hurt",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 16 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 16 ), SubResource( 16 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 15 ) ],
+"loop": false,
+"name": "wakeup",
+"speed": 6.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=18]
@@ -272,6 +285,22 @@ tracks/2/keys = {
 "values": [ false, true, true ]
 }
 
+[sub_resource type="Animation" id=31]
+resource_name = "white"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/intensity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 8, 8 )
 
@@ -295,11 +324,30 @@ animations = [ {
 "speed": 20.0
 } ]
 
+[sub_resource type="Animation" id=32]
+resource_name = "shake"
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animations:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1, 0 ), Vector2( 1, 0 ) ]
+}
+
 [node name="Player" type="KinematicBody2D" groups=[
 "entity",
 "player",
 ]]
-material = SubResource( 1 )
+material = SubResource( 30 )
+position = Vector2( -1, 0 )
 collision_layer = 64
 script = ExtResource( 1 )
 
@@ -342,15 +390,29 @@ autostart = true
 wait_time = 0.25
 one_shot = true
 
+[node name="LightParticles" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -8 )
+emitting = false
+amount = 2
+texture = ExtResource( 10 )
+direction = Vector2( 0, -1 )
+spread = 20.0
+gravity = Vector2( 0, -10 )
+initial_velocity = 100.0
+scale_amount = 1.5
+scale_amount_random = 1.0
+
 [node name="Animations" type="AnimatedSprite" parent="."]
 use_parent_material = true
 position = Vector2( 0, -12 )
 frames = SubResource( 17 )
 animation = "idle"
+frame = 1
 playing = true
 script = ExtResource( 5 )
 
 [node name="Blink" type="Sprite" parent="Animations"]
+visible = false
 position = Vector2( -2, -4 )
 texture = ExtResource( 8 )
 centered = false
@@ -370,6 +432,7 @@ anims/oscillate = SubResource( 20 )
 anims/shake = SubResource( 21 )
 anims/warp = SubResource( 22 )
 anims/warp_in = SubResource( 23 )
+anims/white = SubResource( 31 )
 
 [node name="MagnetTracker" type="Area2D" parent="."]
 collision_layer = 0
@@ -383,7 +446,11 @@ shape = SubResource( 24 )
 visible = false
 position = Vector2( 0, -10 )
 frames = SubResource( 28 )
+frame = 2
 playing = true
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+anims/shake = SubResource( 32 )
 [connection signal="facing_changed" from="Movement" to="Animations" method="_on_Movement_facing_changed"]
 [connection signal="movement_state_changed" from="Movement" to="Animations" method="_on_Movement_movement_state_changed"]
 [connection signal="movement_state_changed" from="Movement" to="." method="_on_Movement_movement_state_changed"]

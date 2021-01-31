@@ -5,7 +5,12 @@ var falling := false
 var spd := 10.0
 var item_spd := 40
 
+var pulsing := false
+
 func _process(delta):
+	if !activated:
+		$Electricity.visible = pulsing
+		
 	var p = Global.get_player()
 	if !activated and p.global_position.distance_to(global_position) < 20:
 		activated = true
@@ -43,3 +48,13 @@ func event_stuff():
 	
 	# Change this to go to the proper room when stuff is set up
 	Global.current_room_control.room_restart()
+
+
+func _on_PulseTimer_timeout():
+	if !activated:
+		if pulsing:
+			$PulseTimer.start(1)
+			pulsing = false
+		else:
+			$PulseTimer.start(0.2)
+			pulsing = true

@@ -14,48 +14,59 @@ var stage_music := ["Music"]
 
 func _ready():
 	Global.gui.connect("fade_finished", self, "fadetimer_over")
-	if Global.gui.get_node("ScreenFade").modulate.a == 1:
-		if scene_path == "title":
-			Global.gui.fade_screen(false, 0.25)
-		else:
-			Global.gui.fade_screen(false)
-	else:
-		fadetimer_over(false)
-	
-	Global.current_room = get_parent()
-	Global.current_room_control = self
-	Global.current_room_path = scene_path
-	
-	Global.set_pause_state(Global.PauseState.NORMAL)
-	Global.gui.get_node("Menu").lock_input = false
-	
-	if has_player:
-		Global.get_player().get_node("Movement").facing = Stats.player_direction
+	if Global.final_cutscene:
+		Global.get_player().queue_free()
+		Global.current_room = get_parent()
+		Global.current_room_control = self
+		Global.current_room_path = scene_path
+		has_player = false
+		for c in get_tree().get_nodes_in_group("newrobot"):
+			c.get_node("EventHandler").wakeup()
+			break
 		
-	if map_cell != Vector2(-1, -1):
-		Stats.game_data[Stats.Data.map_cells + map_cell.x + map_cell.y * 4] = 1
-		SceneManager.game_view.get_node("GUI/Map").selected_cell = map_cell
-		
-		if Global.current_boundary_entrance != -1:
-			Stats.game_data[Stats.Data.checkpoint] = Global.current_boundary_entrance
+	else:
+		if Global.gui.get_node("ScreenFade").modulate.a == 1:
+			if scene_path == "title":
+				Global.gui.fade_screen(false, 0.25)
+			else:
+				Global.gui.fade_screen(false)
 		else:
-			Global.current_boundary_entrance = Stats.game_data[Stats.Data.checkpoint]
+			fadetimer_over(false)
+		
+		Global.current_room = get_parent()
+		Global.current_room_control = self
+		Global.current_room_path = scene_path
+		
+		Global.set_pause_state(Global.PauseState.NORMAL)
+		Global.gui.get_node("Menu").lock_input = false
+		
+		if has_player:
+			Global.get_player().get_node("Movement").facing = Stats.player_direction
 			
-		var ind = Stats.rooms.find(scene_path)
-		if ind != -1:
-			Stats.game_data[Stats.Data.room] = ind
+		if map_cell != Vector2(-1, -1):
+			Stats.game_data[Stats.Data.map_cells + map_cell.x + map_cell.y * 4] = 1
+			SceneManager.game_view.get_node("GUI/Map").selected_cell = map_cell
 			
-		DataManager.data_save()
-	else:
-		Global.current_boundary_entrance = -1
-	
-	
-	reready()
-	
-	if !Global.start_from_save:
-		_on_Timer_timeout()
-	else:
-		$Timer.start()
+			if Global.current_boundary_entrance != -1:
+				Stats.game_data[Stats.Data.checkpoint] = Global.current_boundary_entrance
+			else:
+				Global.current_boundary_entrance = Stats.game_data[Stats.Data.checkpoint]
+				
+			var ind = Stats.rooms.find(scene_path)
+			if ind != -1:
+				Stats.game_data[Stats.Data.room] = ind
+				
+			DataManager.data_save()
+		else:
+			Global.current_boundary_entrance = -1
+		
+		
+		reready()
+		
+		if !Global.start_from_save:
+			_on_Timer_timeout()
+		else:
+			$Timer.start()
 
 func reready():
 	Global.gui.global_position = Vector2.ZERO

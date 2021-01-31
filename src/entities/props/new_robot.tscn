@@ -1,0 +1,90 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://src/entities/Entity.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/props/AnimatedSprite.gd" type="Script" id=2]
+[ext_resource path="res://assets/entities/robotsprite2.png" type="Texture" id=3]
+[ext_resource path="res://src/entities/components/NewrobotEvents.gd" type="Script" id=4]
+[ext_resource path="res://src/resources/PhysicsAttributes.gd" type="Script" id=5]
+[ext_resource path="res://src/entities/components/Movement.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/entities/components/EventHandler.tscn" type="PackedScene" id=7]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 20, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 40, 0, 20, 24 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "sleep",
+"speed": 5.0
+} ]
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+FLOOR_MAX_ANGLE = 46.0
+FLOOR_FULL_SPEED_ANGLE = 46.0
+jump_height = 5.0
+jump_length = 5.0
+accel_run = 62.0
+decel_run = 45.0
+accel_air = 90.0
+decel_air = 30.0
+decel_knockback = 60.0
+accel_gravity = 60.0
+accel_jump = 60.0
+max_run_speed = 6.0
+COYOTE_TIME = 0.05
+DROPTHROUGH_TIME = 0.3
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 3.5, 6 )
+
+[node name="NewRobot" type="KinematicBody2D" groups=[
+"newrobot",
+]]
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1, -12 )
+scale = Vector2( -1, 1 )
+frames = SubResource( 5 )
+animation = "sleep"
+script = ExtResource( 2 )
+
+[node name="EventHandler" parent="." instance=ExtResource( 7 )]
+script = ExtResource( 4 )
+
+[node name="Movement" parent="." instance=ExtResource( 6 )]
+Physics = SubResource( 6 )
+facing = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -6 )
+shape = SubResource( 7 )
+[connection signal="facing_changed" from="Movement" to="AnimatedSprite" method="_on_Movement_facing_changed"]
+[connection signal="movement_state_changed" from="Movement" to="AnimatedSprite" method="_on_Movement_movement_state_changed"]
+
+[editable path="EventHandler"]

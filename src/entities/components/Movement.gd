@@ -20,7 +20,7 @@ enum State {
 export(Resource) var Physics
 export(Global.HDirs) var facing = Global.HDirs.RIGHT setget set_facing
 
-onready var Parent: Entity = get_parent()
+onready var Parent = get_parent()
 
 var movement_state = State.IDLE setget set_movement_state
 var snap_override = false
@@ -163,7 +163,7 @@ func _y_velocity(velocity: Vector2, delta: float) -> Vector2:
 	
 func _final_movement(velocity: Vector2, delta: float) -> Vector2:
 	var pos = Parent.position
-	var collision := Parent.move_and_collide(velocity*delta, true, true, true)
+	var collision = Parent.move_and_collide(velocity*delta, true, true, true)
 	
 	if collision:
 		var surface_angle := abs(collision.normal.rotated(deg2rad(90)).angle())
@@ -188,7 +188,7 @@ func _final_movement(velocity: Vector2, delta: float) -> Vector2:
 				velocity.y = Physics.accel_gravity*delta
 				
 	var snap := Vector2.ZERO if snap_override or _jumping or bypass_jump else Vector2(0, Global.TILE_SIZE*0.5)
-	var new_velocity := Parent.move_and_slide_with_snap(velocity, snap, Vector2.UP, true, 4, Physics.FLOOR_MAX_ANGLE)
+	var new_velocity = Parent.move_and_slide_with_snap(velocity, snap, Vector2.UP, true, 4, Physics.FLOOR_MAX_ANGLE)
 	
 	# prevent extreme momentum from jumping up sloped walls
 	if Parent.is_on_wall():

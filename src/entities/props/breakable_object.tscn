@@ -49,6 +49,7 @@ tracks/1/keys = {
 }
 
 [node name="BreakWall" type="StaticBody2D" groups=[
+"breakwall",
 "entity",
 "prop",
 ]]

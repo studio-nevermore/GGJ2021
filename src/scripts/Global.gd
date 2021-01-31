@@ -13,6 +13,8 @@ var current_room_control
 var current_room_path := "misc/title"
 var current_boundary_entrance := -1
 
+var final_cutscene := false
+
 var stage_music_level := 0
 
 var start_from_save := true

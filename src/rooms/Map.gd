@@ -110,7 +110,8 @@ func _process(delta):
 			
 	visible = Global.current_pausestate == Global.PauseState.PAUSED and open
 	$MapFull.visible = fullmap
-	$MapFull.frame = selected_cell.x + selected_cell.y * 4
+	if selected_cell != Vector2(-1, -1):
+		$MapFull.frame = selected_cell.x + selected_cell.y * 4
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

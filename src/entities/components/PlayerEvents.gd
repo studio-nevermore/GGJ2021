@@ -77,3 +77,48 @@ func get_magnetized(body):
 	
 	parent.visible = false
 	body.event_stuff()
+
+func end_event():
+	Global.set_pause_state(Global.PauseState.EVENT)
+	freeze_movement()
+	
+	var pmove = parent.get_node("Movement")
+	var panims = parent.get_node("Animations")
+	var parts = parent.get_node("LightParticles")
+	pmove.facing = Global.HDirs.RIGHT
+	
+	Global.current_room_control.fade_music()
+	$Timer.start(2)
+	yield($Timer, "timeout")
+	
+	panims.stop = true
+	panims.play("whatever")
+	parent.z_index = 75
+	$Timer.start(0.4)
+	yield($Timer, "timeout")
+	
+	parts.emitting = true
+	$Timer.start(1)
+	yield($Timer, "timeout")
+	
+	parts.amount = 8
+	parent.get_node("AnimationPlayer2").play("shake")
+	$Timer.start(1.5)
+	yield($Timer, "timeout")
+	
+	parts.amount = 14
+	$Timer.start(1.5)
+	yield($Timer, "timeout")
+	
+	parts.spread = 60
+	$Timer.start(1.5)
+	yield($Timer, "timeout")
+	
+	parent.get_node("AnimationPlayer").play("white")
+	yield(parent.get_node("AnimationPlayer"), "animation_finished")
+	
+	Global.gui.get_node("LightScreen/AnimationPlayer").play("fade")
+	
+	Global.final_cutscene = true
+	Global.current_room_control.room_restart()
+	

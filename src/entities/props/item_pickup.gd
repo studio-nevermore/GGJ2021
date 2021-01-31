@@ -15,8 +15,11 @@ enum Items {
 export(Items) var item = Items.jump
 
 var collected := false
+export(bool) var glitchside = false
 
 func _ready():
+	if glitchside and !Stats.game_data[Stats.Data.glitched]:
+		queue_free()
 	match item:
 		Items.jump:
 			if Stats.game_data[Stats.Data.upgrade_jump] == 1:
