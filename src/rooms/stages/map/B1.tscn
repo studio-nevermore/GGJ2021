@@ -76,6 +76,7 @@ entrance_index = 2
 position = Vector2( 256, 66 )
 scale = Vector2( 1.48, 8.04 )
 exit_room = "map/B2"
+exit_room_glitched = "map/D2"
 exit_direction = 4
 
 [node name="TilesAUTO_BG" type="Node2D" parent="."]

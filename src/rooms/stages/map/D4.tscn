@@ -63,6 +63,7 @@ entrance_index = 1
 position = Vector2( 272, -11 )
 scale = Vector2( 12.6, 1 )
 exit_room = "map/C4"
+exit_room_glitched = "map/A4"
 exit_direction = 1
 entrance_index = 3
 

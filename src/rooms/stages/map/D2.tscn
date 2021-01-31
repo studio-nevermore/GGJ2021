@@ -54,6 +54,7 @@ entrance_index = 2
 position = Vector2( 250.956, 35.974 )
 scale = Vector2( 1, 4.12 )
 exit_room = "map/D3"
+exit_room_glitched = "map/D4"
 exit_direction = 4
 
 [node name="BoundaryExit2" parent="Boundaries" instance=ExtResource( 4 )]
