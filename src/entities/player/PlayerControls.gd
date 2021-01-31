@@ -89,34 +89,42 @@ func _physics_process(_delta):
 				$ProjectileRecoil.start()
 				
 			var magcoll = space_state.intersect_ray(get_parent().global_position, get_parent().global_position + magnetized_dir * 200, [get_parent().get_node("MagnetTracker")], get_parent().get_node("MagnetTracker").collision_mask)
-			if magnetized and (!Input.is_action_pressed("game_magnet") or !magcoll or magcoll["collider"] != magnetized_to):
-				magnetized = false
-				MovementController.freeze_gravity = false
-				MovementController.freeze_decel = false
-				MovementController.bypass_max_speed = false
-				MovementController.bypass_jump = false
+			if magnetized:
+				if (!Input.is_action_pressed("game_magnet") or !magcoll):
+					magnetized = false
+					MovementController.freeze_gravity = false
+					MovementController.freeze_decel = false
+					MovementController.bypass_max_speed = false
+					MovementController.bypass_jump = false
+				elif magnetized_dir.y == 0:
+					MovementController._velocity.y = 0
 				
-			if Stats.game_data[Stats.Data.upgrade_magnet] and Input.is_action_just_pressed("game_magnet"):
-				var dir = Vector2(-1 if MovementController.facing == Global.HDirs.LEFT else 1, 0)
-				var mag = 0
-				if min(Input.get_action_strength("game_left") / max_sens, 1.0) > mag:
-					dir = Vector2(-1, 0)
-					mag = min(Input.get_action_strength("game_left") / max_sens, 1.0)
-				if min(Input.get_action_strength("game_right") / max_sens, 1.0) > mag:
-					dir = Vector2(1, 0)
-					mag = min(Input.get_action_strength("game_right") / max_sens, 1.0)
-				if min(Input.get_action_strength("game_up") / max_sens, 1.0) > mag:
-					dir = Vector2(0, -1)
-					mag = min(Input.get_action_strength("game_up") / max_sens, 1.0)
-				if min(Input.get_action_strength("game_down") / max_sens, 1.0) > mag:
-					dir = Vector2(0, 1)
-					mag = min(Input.get_action_strength("game_down") / max_sens, 1.0)
+			if Input.is_action_just_released("game_magnet"):
+				magnetized_dir = Vector2.ZERO
+				
+			if !magnetized and Stats.game_data[Stats.Data.upgrade_magnet] and Input.is_action_pressed("game_magnet"):
+				var dir
+				if magnetized_dir == Vector2.ZERO:
+					dir = Vector2(-1 if MovementController.facing == Global.HDirs.LEFT else 1, 0)
+					var mag = 0
+					if min(Input.get_action_strength("game_left") / max_sens, 1.0) > mag:
+						dir = Vector2(-1, 0)
+						mag = min(Input.get_action_strength("game_left") / max_sens, 1.0)
+					if min(Input.get_action_strength("game_right") / max_sens, 1.0) > mag:
+						dir = Vector2(1, 0)
+						mag = min(Input.get_action_strength("game_right") / max_sens, 1.0)
+					if min(Input.get_action_strength("game_up") / max_sens, 1.0) > mag:
+						dir = Vector2(0, -1)
+						mag = min(Input.get_action_strength("game_up") / max_sens, 1.0)
+					if min(Input.get_action_strength("game_down") / max_sens, 1.0) > mag:
+						dir = Vector2(0, 1)
+						mag = min(Input.get_action_strength("game_down") / max_sens, 1.0)
+				else:
+					dir = magnetized_dir
 				
 				var coll = space_state.intersect_ray(get_parent().global_position, get_parent().global_position + dir * 200, [get_parent().get_node("MagnetTracker")], get_parent().get_node("MagnetTracker").collision_mask)
-				print(coll)
 				if coll:
 					var solidcoll = space_state.intersect_ray(get_parent().global_position, coll["position"]-dir, [get_parent(), coll["collider"]])
-					print(solidcoll)
 					if !solidcoll:
 						magnetized = true
 						magnetized_to = coll["collider"]
