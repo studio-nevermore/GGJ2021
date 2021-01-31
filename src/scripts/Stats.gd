@@ -41,7 +41,7 @@ var game_settings := []
 var player_direction = Global.HDirs.RIGHT
 
 var rooms = [
-		"/stages/testroom"
+		"/stages/testroom2"
 	]
 var room_prefix = "src/rooms/stages/"
 var room_suffix = ".tscn"

@@ -121,8 +121,8 @@ material = SubResource( 3 )
 position = Vector2( 31, 28 )
 texture = ExtResource( 6 )
 centered = false
-hframes = 4
 vframes = 4
+hframes = 4
 
 [node name="CellName" type="Label" parent="GameContainer/GameView/GUI/Map"]
 modulate = Color( 0.333333, 0.278431, 0.247059, 1 )
@@ -171,5 +171,4 @@ pause_mode = 2
 bus = "Music"
 
 [node name="TitleScreen" parent="GameContainer/GameView" instance=ExtResource( 1 )]
-
 [connection signal="animation_finished" from="GameContainer/GameView/GUI/Map/AnimationPlayer" to="GameContainer/GameView/GUI/Map" method="_on_AnimationPlayer_animation_finished"]
