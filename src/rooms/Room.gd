@@ -32,6 +32,13 @@ func _ready():
 	if map_cell != Vector2(-1, -1):
 		Stats.game_data[Stats.Data.map_cells + map_cell.x + map_cell.y * 4] = 1
 		SceneManager.game_view.get_node("GUI/Map").selected_cell = map_cell
+		
+		if Global.current_boundary_entrance != -1:
+			Stats.game_data[Stats.Data.checkpoint] = Global.current_boundary_entrance
+		else:
+			Global.current_boundary_entrance = Stats.game_data[Stats.Data.checkpoint]
+	else:
+		Global.current_boundary_entrance = -1
 	
 	reready()
 	
@@ -128,10 +135,36 @@ func _on_Timer_timeout():
 	
 	set_music("")
 	
-	for b in get_tree().get_nodes_in_group("roomboundary"):
-		if b is RoomBoundary:
-			b.move_player()
-			break
+	if map_cell != Vector2(-1, -1):
+		move_player()
+
+func move_player():
+	var p = Global.get_player()
+	
+	if Global.current_boundary_entrance == -1:
+		var closest
+		for e in get_tree().get_nodes_in_group("boundaryentrance"):
+			if !closest:
+				closest = e
+			elif p.global_position.distance_to(e.global_position) < p.global_position.distance_to(closest.global_position):
+				closest = e
+		
+		var face = Global.HDirs.RIGHT
+		if sign(closest.scale.x) == -1:
+			face = Global.HDirs.LEFT
+		p.get_node("Movement").facing = face
+		p.move_with_camera_snap(closest.global_position)
+				
+	else:
+		var closest
+		for e in get_tree().get_nodes_in_group("boundaryentrance"):
+			if e.entrance_index == Global.current_boundary_entrance:
+				var face = Global.HDirs.RIGHT
+				if sign(e.scale.x) == -1:
+					face = Global.HDirs.LEFT
+				p.get_node("Movement").facing = face
+				p.move_with_camera_snap(e.global_position)
+				break
 
 func fadetimer_over(out):
 	if !out and !music_started:

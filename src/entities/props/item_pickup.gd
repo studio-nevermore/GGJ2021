@@ -16,6 +16,33 @@ export(Items) var item = Items.jump
 
 var collected := false
 
+func _ready():
+	match item:
+		Items.jump:
+			if Stats.game_data[Stats.Data.upgrade_jump] == 1:
+				queue_free()
+		Items.jump2:
+			if Stats.game_data[Stats.Data.upgrade_jump2] == 1:
+				queue_free()
+		Items.speed:
+			if Stats.game_data[Stats.Data.upgrade_speed] == 1:
+				queue_free()
+		Items.melee:
+			if Stats.game_data[Stats.Data.upgrade_melee] == 1:
+				queue_free()
+		Items.swim:
+			if Stats.game_data[Stats.Data.upgrade_swim] == 1:
+				queue_free()
+		Items.projectile:
+			if Stats.game_data[Stats.Data.upgrade_projectile] == 1:
+				queue_free()
+		Items.paper:
+			if Stats.game_data[Stats.Data.upgrade_paper] == 1:
+				queue_free()
+		Items.magnet:
+			if Stats.game_data[Stats.Data.upgrade_magnet] == 1:
+				queue_free()
+
 func _process(delta):
 	$Item.frame = item
 	if collected and !$CollectParticles.emitting:
