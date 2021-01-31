@@ -26,9 +26,9 @@ has_player = true
 map_cell = Vector2( 1, 0 )
 scene_path = "stages/testroom"
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Background" type="Sprite" parent="."]
 
-[node name="bg_1" type="Sprite" parent="Sprite"]
+[node name="bg_1" type="Sprite" parent="Background"]
 position = Vector2( 120, 68 )
 texture = ExtResource( 11 )
 
@@ -93,7 +93,7 @@ tile_data = PoolIntArray( 589839, 0, 5, 589840, 0, 196611, 655373, 0, 196609, 65
 tile_set = ExtResource( 14 )
 cell_size = Vector2( 8, 8 )
 format = 1
-tile_data = PoolIntArray( -65509, 0, 1, -65508, 0, 2, -65507, 0, 2, -65506, 0, 3, 27, 0, 65537, 28, 0, 65538, 29, 0, 65538, 30, 0, 65539, 65563, 0, 65537, 65564, 0, 65538, 65565, 0, 65538, 65566, 0, 65539, 131099, 0, 65537, 131100, 0, 65538, 131101, 0, 65538, 131102, 0, 65539, 196635, 0, 131073, 196636, 0, 131074, 196637, 0, 131074, 196638, 0, 131075, 851974, 0, 196612 )
+tile_data = PoolIntArray( -65509, 0, 1, -65508, 0, 2, -65507, 0, 2, -65506, 0, 3, 27, 0, 65537, 28, 0, 65538, 29, 0, 65538, 30, 0, 65539, 65563, 0, 65537, 65564, 0, 65538, 65565, 0, 65538, 65566, 0, 65539, 131099, 0, 65537, 131100, 0, 65538, 131101, 0, 65538, 131102, 0, 65539, 196635, 0, 131073, 196636, 0, 131074, 196637, 0, 131074, 196638, 0, 131075 )
 
 [node name="Autotile_ScafBG" type="TileMap" parent="TilesAUTO_BG"]
 tile_set = ExtResource( 16 )
@@ -148,7 +148,7 @@ tile_data = PoolIntArray( 131079, 0, 196609, 131080, 0, 7, 131081, 0, 2, 131082,
 tile_set = ExtResource( 18 )
 cell_size = Vector2( 8, 8 )
 format = 1
-tile_data = PoolIntArray( 196635, 0, 1, 196636, 0, 2, 196637, 0, 2, 196638, 0, 3, 262171, 0, 131073, 262172, 0, 65543, 262173, 0, 65538, 262174, 0, 65539, 327708, 0, 131073, 327709, 0, 131074, 327710, 0, 131075, 851974, 0, 196612 )
+tile_data = PoolIntArray( 196635, 0, 1, 196636, 0, 2, 196637, 0, 2, 196638, 0, 3, 262171, 0, 131073, 262172, 0, 65543, 262173, 0, 65538, 262174, 0, 65539, 327708, 0, 131073, 327709, 0, 131074, 327710, 0, 131075 )
 
 [node name="Autotile_Scaf" type="TileMap" parent="TilesAUTO_FG"]
 tile_set = ExtResource( 17 )
