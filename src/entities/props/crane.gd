@@ -7,6 +7,10 @@ var item_spd := 40
 
 var pulsing := false
 
+func _ready():
+	if Stats.game_data[Stats.Data.glitched]:
+		queue_free()
+
 func _process(delta):
 	if !activated:
 		$Electricity.visible = pulsing

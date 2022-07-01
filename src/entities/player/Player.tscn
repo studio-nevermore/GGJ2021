@@ -71,10 +71,6 @@ max_run_speed = 1.5
 COYOTE_TIME = 0.05
 DROPTHROUGH_TIME = 0.3
 
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 6 )
-region = Rect2( 120, 0, 20, 24 )
-
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 20, 24 )
@@ -82,38 +78,6 @@ region = Rect2( 0, 0, 20, 24 )
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 6 )
 region = Rect2( 20, 0, 20, 24 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 6 )
-region = Rect2( 40, 0, 20, 24 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 20, 24 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 6 )
-region = Rect2( 100, 0, 20, 24 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 6 )
-region = Rect2( 40, 0, 20, 24 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 20, 24 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 6 )
-region = Rect2( 20, 0, 20, 24 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 6 )
-region = Rect2( 80, 0, 20, 24 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 6 )
-region = Rect2( 60, 0, 20, 24 )
 
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 6 )
@@ -123,21 +87,57 @@ region = Rect2( 120, 0, 20, 24 )
 atlas = ExtResource( 6 )
 region = Rect2( 100, 0, 20, 24 )
 
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 6 )
+region = Rect2( 120, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 6 )
+region = Rect2( 100, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 6 )
+region = Rect2( 80, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 6 )
+region = Rect2( 60, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 20, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 6 )
+region = Rect2( 40, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 6 )
+region = Rect2( 40, 0, 20, 24 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 20, 24 )
+
 [sub_resource type="SpriteFrames" id=17]
 animations = [ {
-"frames": [ SubResource( 29 ) ],
-"loop": true,
-"name": "whatever",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "idle",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 16 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 16 ), SubResource( 16 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 15 ) ],
+"loop": false,
+"name": "wakeup",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 29 ) ],
 "loop": true,
-"name": "walk",
+"name": "whatever",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 9 ) ],
@@ -145,25 +145,25 @@ animations = [ {
 "name": "sleep",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 10 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
-"name": "jump",
-"speed": 5.0
+"name": "hurt",
+"speed": 8.0
 }, {
 "frames": [ SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "swim",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 13 ), SubResource( 14 ) ],
+"frames": [ SubResource( 10 ) ],
 "loop": true,
-"name": "hurt",
-"speed": 8.0
+"name": "jump",
+"speed": 5.0
 }, {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 16 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 16 ), SubResource( 16 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 15 ), SubResource( 16 ), SubResource( 15 ) ],
-"loop": false,
-"name": "wakeup",
-"speed": 6.0
+"frames": [ SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=18]
@@ -342,10 +342,7 @@ tracks/0/keys = {
 "values": [ Vector2( -1, 0 ), Vector2( 1, 0 ) ]
 }
 
-[node name="Player" type="KinematicBody2D" groups=[
-"entity",
-"player",
-]]
+[node name="Player" type="KinematicBody2D" groups=["entity", "player"]]
 material = SubResource( 30 )
 position = Vector2( -1, 0 )
 collision_layer = 64
@@ -451,9 +448,10 @@ playing = true
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 anims/shake = SubResource( 32 )
+
 [connection signal="facing_changed" from="Movement" to="Animations" method="_on_Movement_facing_changed"]
-[connection signal="movement_state_changed" from="Movement" to="Animations" method="_on_Movement_movement_state_changed"]
 [connection signal="movement_state_changed" from="Movement" to="." method="_on_Movement_movement_state_changed"]
+[connection signal="movement_state_changed" from="Movement" to="Animations" method="_on_Movement_movement_state_changed"]
 [connection signal="timeout" from="PlayerControls/ProjectileRecoil" to="PlayerControls" method="_on_ProjectileRecoil_timeout"]
 [connection signal="frame_changed" from="Animations" to="Animations" method="_on_Animations_frame_changed"]
 [connection signal="timeout" from="Animations/BlinkTimer" to="Animations" method="_on_BlinkTimer_timeout"]
