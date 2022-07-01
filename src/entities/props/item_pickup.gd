@@ -75,6 +75,17 @@ func collect_item():
 	#Global.get_player().get_node("Animations").play("pose")
 	$AnimationPlayer.play("rise")
 
+# TODO: better names
+var labels = {
+	Items.jump: "High Jump",
+	Items.jump2: "Double Jump",
+	Items.speed: "Speed",
+	Items.melee: "Melee",
+	Items.swim: "Swim",
+	Items.projectile: "Projectile",
+	Items.paper: "Paper",
+	Items.magnet: "Magnet",
+}
 
 func _on_ItemPickup_body_entered(body):
 	if !collected and body.is_in_group("player"):
@@ -83,6 +94,8 @@ func _on_ItemPickup_body_entered(body):
 		$CollectParticles.visible = true
 		$Sprite.visible = false
 		$Item.visible = false
+		$Label.text = labels[item]
+		$Label.visible = true
 		global_position = body.global_position + Vector2(0, -6)
 		collected = true
 		body.get_node("EventHandler").freeze_completely()
