@@ -16,10 +16,10 @@ var mapcells_available = [
 ]
 
 var mapcells_name = [
-	["aa bwbwbwbw", "uwuwuwuwu", "wawaaaaa", "aafklsdf"],
-	["uwu uuuuuuuwu", "OWO", "wawabbbhhhfhf", "hi whats up"],
-	["hjjdd..", "WAOWIE", "'w'", "eeeuuuuufuffufufu"],
-	["6", "yayayayayaya", "NONONONONO", "a"]
+	["Upper Towers", "Danger! Cranes!", "Administrative Lookout", "Upper Offices"],
+	["Lower Towers", "Gates", "Beginnings", "Lower Offices"],
+	["Dumping Grounds", "Depths", "Crossroads", "Acid Heights"],
+	["Junk Pit", "Car Pile", "Melted Islands", "Acid Lake"]
 ]
 
 var selected_cell := Vector2(-1, -1)
