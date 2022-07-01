@@ -1,7 +1,8 @@
-class_name Room
+class_name RoomControl
 extends Node2D
 
 export(bool) var has_player = false
+export(bool) var has_music = true
 export(Vector2) var map_cell = Vector2(-1, -1)
 export(String) var scene_path = ""
 
@@ -9,8 +10,6 @@ var dir = "src/rooms/stages/"
 var ext = ".tscn"
 var music_started := false
 var music_fading := -1.0
-
-var stage_music := ["Music"]
 
 func _ready():
 	Global.gui.connect("fade_finished", self, "fadetimer_over")
@@ -128,19 +127,28 @@ func fadeout():
 	else:
 		Global.gui.fade_screen(true)
 
+func get_trackname() -> String:
+	if not has_music:
+		return ""
+	
+	if Stats.game_data[Stats.Data.glitched]:
+		return "SystemFailure"
+	
+	return "Searching"
+
 func play_music(trackname):
 	if trackname == "":
-		trackname = stage_music[Global.stage_music_level]
+		trackname = get_trackname()
 	var n = get_node_or_null(trackname)
+	set_music(trackname)
 	if n and n.stream:
-		set_music(trackname)
 		var game_music = SceneManager.game_view.get_node("Music")
 		if !game_music.playing:
 			game_music.playing = true
 
 func set_music(trackname):
 	if trackname == "":
-		trackname = stage_music[Global.stage_music_level]
+		trackname = get_trackname()
 	music_fading = -1
 	Stats.set_setting(Stats.Settings.music_vol)
 	var n = get_node_or_null(trackname)
@@ -205,8 +213,13 @@ func move_player():
 func fadetimer_over(out):
 	if !out and !music_started:
 		if SceneManager.game_view:
+			if has_player:
+				var animations: AnimatedSprite = Global.get_player().get_node("Animations")
+				while animations.animation == "sleep":
+					yield(animations, "animation_finished")
+			
 			play_music("")
 			music_started = true
-		#$Music.playing = true
+
 	if has_player:
 		Global.get_player().get_node("PlayerControls").fade_buffer = false

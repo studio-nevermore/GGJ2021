@@ -39,10 +39,8 @@ tracks/1/keys = {
 script = ExtResource( 2 )
 
 [node name="RoomControl" parent="." instance=ExtResource( 1 )]
+has_music = false
 scene_path = "title"
-
-[node name="Music" parent="RoomControl" index="1"]
-stream = null
 
 [node name="Label" type="Label" parent="."]
 margin_left = 11.5087

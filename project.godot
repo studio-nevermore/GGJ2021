@@ -137,7 +137,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "RoomControl",
 "language": "GDScript",
-"path": "res://src/rooms/Room.gd"
+"path": "res://src/rooms/RoomControl.gd"
 }, {
 "base": "Area2D",
 "class": "Slash",

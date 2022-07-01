@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/rooms/Room.gd" type="Script" id=1]
+[ext_resource path="res://src/rooms/RoomControl.gd" type="Script" id=1]
 [ext_resource path="res://src/parts/GlitchScreen.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sound/System Failure.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/sound/Searching.ogg" type="AudioStream" id=4]
 
 [node name="RoomControl" type="Node2D"]
 pause_mode = 2
@@ -12,8 +13,12 @@ script = ExtResource( 1 )
 wait_time = 0.05
 one_shot = true
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="SystemFailure" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "Music"
+
+[node name="Searching" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 bus = "Music"
 
 [node name="GlitchScreen" parent="." instance=ExtResource( 2 )]
@@ -21,4 +26,5 @@ bus = "Music"
 [node name="ExitTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
